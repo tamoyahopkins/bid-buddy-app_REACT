@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Scanner from "./Scanner"
 
 class Home extends Component {
   
@@ -7,6 +8,7 @@ class Home extends Component {
         return (  
             <div>
                 Bid Buddies
+                <Scanner />
             </div>
         );
     }
