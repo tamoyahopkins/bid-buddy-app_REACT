@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import apiConnect from "./COMPONENTS/api_connect2"; 
+import apiConnect from "./COMPONENTS/api_connect"; 
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
