@@ -49,7 +49,10 @@ var request = require('request');
 // Set your API parameters here.
 var API_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hZG1pbiI6ZmFsc2UsInN1YiI6IjI2MjEiLCJpc3MiOiJkYXRhZmluaXRpIiwiZW1haWwiOiJ0YW1veWFzaG9wa2luc0BnbWFpbC5jb20ifQ.iGrS5VMMj3rtpaJlXAZxOGrgqHv--63iLQy0NTZAJ5U';
 var format = 'JSON';
-var query = 'categories:shoes AND upc:* AND brand:* AND manufacturer:*';
+// let upcNum = 190561642822
+// var query = `upc:${upcNum}`;
+
+var query = 'upc:190561642822';
 var num_records = 1;
 var download = false;
 

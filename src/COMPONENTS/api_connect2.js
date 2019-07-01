@@ -27,4 +27,21 @@ req.on('error', function(e) {
 })
 req.write(`${lookupObjectJSON}`)
 req.end()
+
+//to finish moving api data to obj on local on the page 
+function moveData (dataObject){
+    let tempProdArray= {}
+    let prodQueryResults = {
+        prodName: dataObject.prodName, 
+        prodImageLocationArr: dataObject.primaryImageURLs, 
+        prodColorsArr: dataObject.prodColors, 
+        prodDescriptionArr: dataObject.descriptions, 
+        prodUPCArr: dataObject.upc, 
+
+
+    }
+    
+
+
+}
     
