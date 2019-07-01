@@ -5,6 +5,7 @@ import { Home } from "..";
 
 class App extends Component {
   render() {
+    
     return (
       <Switch>
         <Route exact path="/" render={() => <Home />} />
