@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Scanner from "../Scanner"
-import processBarcode from "../../actions/scanner"
+import {processBarcode} from "../../actions/scanner"
 
 
 class Home extends Component {
@@ -14,7 +14,7 @@ class Home extends Component {
   _onBarcodeDetect(barcode) {
       this.props.process(barcode)
   }
-  
+
     render() { 
         return (  
             <div>
@@ -24,6 +24,7 @@ class Home extends Component {
         );
     }
 }
+
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
