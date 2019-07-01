@@ -27,7 +27,7 @@ class Scanner extends Component {
       },
       locate: true,
       decoder: {
-        readers: ["code_128_reader", "upc_reader", "upc_e_reader"]
+        readers: [ "upc_reader", "upc_e_reader"]
       }
     }, function (err) {
       if (err) {
@@ -44,7 +44,8 @@ class Scanner extends Component {
     Quagga.stop()
     Quagga.offProcessed()
     //this.props.onBarcodeDetect(res.codeResult.code)
-    console.log(res.codeResult.code)
+    console.log(res.codeResult)
+    const decodedBarcode = res.codeResult.code
   }
 
   render() {

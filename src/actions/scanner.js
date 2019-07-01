@@ -9,10 +9,10 @@ export const startScanning = () => {
       type: 'SPINNER_ON'
     }
   }
-  
+
 export const processBarcode = (barcode) => {
     return dispatch => {
-      dispatch(spinnerOn())
+    //   dispatch(spinnerOn())
       
       let url = URL_PATH + barcode + URL_EXTENSION + APIKEY
       
