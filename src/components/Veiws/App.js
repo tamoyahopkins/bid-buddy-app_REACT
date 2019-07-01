@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { Home } from ".";
+import { Home } from "..";
 // import { AuthPage } from "../../../capstone-front/src/components";
 
 class App extends Component {
