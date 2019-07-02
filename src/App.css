@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-t{
-    font-family:"Comic Sans MS", cursive, sans-serif;
-}
-.camera{
-    background-color:black;
-    height:23px;
-=======
 
 .topnav {
   overflow: hidden;
@@ -57,5 +49,4 @@ t{
   .topnav input[type=text] {
     border: 1px solid #ccc;
   }
->>>>>>> 651822a2d0f32deb9bdfa2265eba0f6684d50353
 }
