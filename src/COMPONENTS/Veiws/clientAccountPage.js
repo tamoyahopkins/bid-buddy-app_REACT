@@ -13,30 +13,75 @@ import {
 import logo from "../../images/bid_buddy_logo_3.png";
 
 
-const GridExampleCelledInternally = () => (
-  <Grid celled='internally'>
-    <Grid.Row>
-      <Grid.Column width={16} style={{ height: '5em' }}>
-        <Image style={{ height: '60px'}} floated="left" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg" />
-        <Image style={{ height: '60px' }} floated="right" src={logo} />
-      </Grid.Column>
-    </Grid.Row>
-    <Grid.Row>
-        <Menu>
-            <Menu.Item floated="right" >Profile </Menu.Item>
-            <Menu.Item floated="left" >Logout</Menu.Item>
-        </Menu>
-    </Grid.Row>
 
-    <Grid.Row>
-      <Grid.Column width={4}>
-        <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column width={12}>
-        <Image src='/images/wireframe/paragraph.png' />
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
+const GridExampleCelledInternally = () => (
+//   <Grid celled='internally'>
+//     <Grid.Row>
+//       <Grid.Column width={16} style={{ height: '5em' }}>
+//         <Image style={{ height: '60px'}} floated="left" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg" />
+//         <Image style={{ height: '60px' }} floated="right" src={logo} />
+//       </Grid.Column>
+//     </Grid.Row>
+//     <Grid.Row>
+//         <Menu>
+//             <Menu.Item floated="right" >Profile </Menu.Item>
+//             <Menu.Item floated="left" >Logout</Menu.Item>
+//         </Menu>
+//     </Grid.Row>
+
+//     <Grid.Row>
+//       <Grid.Column width={4}>
+//         <Image src='/images/wireframe/image.png' />
+//       </Grid.Column>
+//       <Grid.Column width={12}>
+//         <Image src='/images/wireframe/paragraph.png' />
+//       </Grid.Column>
+//     </Grid.Row>
+//   </Grid>
+<React.Fragment>
+    <div id="clientAccount-Container">
+        {/* image div */}
+        <div id="logo-div">
+            <img class="accountLogos" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg"></img>
+            <h1 id="clientAccountPage-headerText"> Account Page </h1>
+            <img id="accountLogos-Right" class="accountLogos" src={logo}></img>
+        </div>
+        {/* navbar div */}
+        <div id="clientPageNav">
+            <div>You have __ bids unanswered.</div>
+            <div id="clientPageNav-buttons">
+                <button>Profile</button>
+                <button>Logout</button>
+            </div>
+        </div>
+        {/* feed container div */}
+        <div id="feedContainer">
+            <div id="leftCol">
+                <h2>Product Dash</h2>
+                <h3>Total Sales: ___ <br></br>Total Declines: ___</h3>         
+                <div>
+                    <h3>Catagory</h3>
+                    <button>+</button>
+                </div>
+                <div>
+                    <h3>Brand</h3>
+                    <button>+</button>
+                </div>
+                <div>
+                    <h3>Volume</h3>
+                    <button>+</button>
+                </div>
+            </div>
+            <div id="rightCol">
+                <div id="scrollingfeed-Container">
+                <div></div>
+                <div></div>
+                <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</React.Fragment>
 )
 
 export default GridExampleCelledInternally
@@ -92,22 +137,22 @@ export default GridExampleCelledInternally
 //           </Menu.Item>
 //           <Menu.Item as='a'>Home</Menu.Item>
   
-//           <Dropdown item simple text='Dropdown'>
-//             <Dropdown.Menu>
-//               <Dropdown.Item>List Item</Dropdown.Item>
-//               <Dropdown.Item>List Item</Dropdown.Item>
-//               <Dropdown.Divider />
-//               <Dropdown.Header>Header Item</Dropdown.Header>
-//               <Dropdown.Item>
-//                 <i className='dropdown icon' />
-//                 <span className='text'>Submenu</span>
-//                 <Dropdown.Menu>
-//                   <Dropdown.Item>List Item</Dropdown.Item>
-//                   <Dropdown.Item>List Item</Dropdown.Item>
-//                 </Dropdown.Menu>
-//               </Dropdown.Item>
-//               <Dropdown.Item>List Item</Dropdown.Item>
-//             </Dropdown.Menu>
+        //   <Dropdown item simple text='Dropdown'>
+        //     <Dropdown.Menu>
+        //       <Dropdown.Item>List Item</Dropdown.Item>
+        //       <Dropdown.Item>List Item</Dropdown.Item>
+        //       <Dropdown.Divider />
+        //       <Dropdown.Header>Header Item</Dropdown.Header>
+        //       <Dropdown.Item>
+        //         <i className='dropdown icon' />
+        //         <span className='text'>Submenu</span>
+        //         <Dropdown.Menu>
+        //           <Dropdown.Item>List Item</Dropdown.Item>
+        //           <Dropdown.Item>List Item</Dropdown.Item>
+        //         </Dropdown.Menu>
+        //       </Dropdown.Item>
+        //       <Dropdown.Item>List Item</Dropdown.Item>
+        //     </Dropdown.Menu>
 //           </Dropdown>
 //         </Container>
 //       </Menu>
