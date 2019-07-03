@@ -1,33 +1,342 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+*{
+  margin: '0px'; 
+  padding: '0px';
+  font-family: 'Roboto Condensed', sans-serif;
+}
+input{
+  padding: inherit; 
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+/* -------START: styling for client Account Page------------ */
+#clientAccount-Container{
+  display: flex; 
   flex-direction: column;
+  width: 100%; 
+  height: 100%;  
+  background-color: #F0ECE3; 
+}
+#logo-div{
+  display: flex; 
+  justify-content: space-between; 
+  height: 100px;
+  width: 100%;  
+  background-color: white; 
+}
+.accountLogos{
+  margin: 10px; 
+  height: 75px; 
+  width: 75px; 
+}
+#accountLogos-Right{
+  height: 110px; 
+  width: 110px; 
+  margin-top: -7px; 
+}
+#clientPageNav{
+  display: flex; 
+  justify-content: space-between; 
+  width: inherit; 
+  height: 30px; 
+  padding: 5px; 
+  color: white; 
+  background-color: #D7A124; 
+}
+#clientAccountPage-headerText{
+  font-family: inherit; 
+  padding: 15px; 
+}
+.header-text{
+  /* text-align: start; */
+  margin:0px; 
+  padding: 0px;
+  
+}
+
+#feedContainer{
+  display: flex; 
+  width: 100%;
+  margin: 0px; 
+  padding: 0px; 
+  flex-direction: row; 
+  background-color: white; 
+}
+
+#leftCol{
+  display: flex; 
+  flex-direction: column; 
+  padding-top: 10px; 
+  width: 25%; 
+  height: 800px; 
+  background-color: lightgray; 
+}
+#rightCol{
+  width: 75%; 
+  height: 800px; 
+  
+}
+/* .ui.grid{
+  margin: 0px; 
+  width: inherit; 
+  background-color: rgb(245, 225, 179); 
+  height: 100px; 
+
+} */
+
+
+.dash-button{
+ width: 40%; 
+ margin-bottom: 10px; 
+}
+
+/* --------Bid card styling-------------- */
+#bidCard-Container{
+  display:flex; 
+  flex-direction: row; 
+  height: 10%; 
+  border: 0.1px solid black; 
+  background-color: rgb(250, 236, 202); 
+ 
+}
+.bidCard-section{   
+  width: 75%; 
+}
+#bidCard-section-left{
+  width: 20%; 
+  padding: 5px; 
+}
+#bidCard-section-middle{
+  width: 70%; 
+  overflow: auto;
+  padding: 5px;  
+  
+}
+#bidCard-section-right{
+  width: 10%; 
+  display: flex; 
+  flex-flow: row wrap; 
+
+  padding: 10px;  
+}
+.bidResponseButton{
+  margin-top: 0px;
+  border-radius: 30%; 
+  height: 30px;  
+  width: 70px; 
+  background-color: #D7A124; 
+  color: white; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+/* -------END: styling for client Account Page------------ */
+
+/* -------START: styling for User Scanning Page ------------ */
+
+#scanPage-Container{
+  display:flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+#scanPageLogo{ 
+  height: 300px; 
+  margin-bottom: -60px; 
+  padding: 0px; 
+ 
+}
+
+#scanPageInput{
+  width: 395px;
+  height: 30px; 
+  /* position: relative; */
+  /* padding: 10px;  */
+  /* border-radius: 5%;  */
+  
+  /* inherited  */
+  margin: 0;
+    max-width: 100%;
+    flex: 1 0 auto;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    text-align: left;
+    line-height: 1.21428571em;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 14px; 
+    text-align: center; 
+    padding: .67857143em 1em;
+    background: #fff;
+    border: 1px solid #D7A124;
+    color: #D7A124;
+    /* border-radius: .28571429rem; */
+    -webkit-transition: border-color .1s ease,-webkit-box-shadow .1s ease;
+    -webkit-transition: box-shadow .1s ease,border-color .1s ease;
+    transition: box-shadow .1s ease,border-color .1s ease;
+    box-shadow: none;
+  
+  
+}
+
+#barcodeScan{
+  display: flex; 
+  flex-flow: column ; 
+  align-items: center; 
+}
+video{
+  width: 395px;
+  /* height: 30px;  */
+  /* position: relative; */
+  /* padding: 10px;  */
+  /* border-radius: 5%;  */
+  
+  /* inherited  */
+  margin: 0;
+    max-width: 100%;
+    flex: 1 0 auto;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    text-align: left;
+    /* line-height: 1.21428571em; */
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    /* font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 14px; 
+    text-align: center;  */
+    /* padding: .67857143em 1em; */
+    background: #fff;
+    border: 1.5px solid #D7A124;
+    color: #D7A124;
+    /* border-radius: .28571429rem; */
+    -webkit-transition: border-color .1s ease,-webkit-box-shadow .1s ease;
+    -webkit-transition: box-shadow .1s ease,border-color .1s ease;
+    transition: box-shadow .1s ease,border-color .1s ease;
+    box-shadow: none;
+}
+/* -------END: styling for User Scanning Page ------------ */
+
+
+/* -------START: styling for client login page ------------ */
+.ui.header>.image:not(.icon), .ui.header>img {
+  display: inline-block;
+  margin-top: .14285714em;
+  width: 4.5em;
+  height: auto;
+  vertical-align: middle;
+  color: #D7A124;
+
+}
+
+.ui.teal.header {
+  color: #D7A124!important;
+}
+
+.ui.teal.button, .ui.teal.buttons .button,.ui.teal.button:hover  {
+  background-color: #D7A124;
+  text-shadow: none;
+  background-image: none;
+}
+
+a {
+  color: #D7A124;
+  text-decoration: none;
+}
+
+/* -------END: styling for client login page ------------ */
+/* -------START: styling for pricing page ------------ */
+#pricingPage-Container{
+  display:flex; 
+  flex-direction: column; 
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: 'Franklin Gothic Medium';
+}
+#pricingPageLogo{
+  width: 300px; 
+  margin-bottom: -50px; 
+}
+#pricingPage-Header{
+  position: relative;
+  right: 86px; 
+  margin: 0px; 
+  padding: 0px; 
+
+}
+#lowestPriceDiv{
+  margin: 0px; 
+  padding: 5px; 
+  margin-bottom: 15px; 
+  background-color: #D7A124;
+  width: 365px; 
+  max-width: 100%;
+  text-align: center; 
+  font-family: 'Franklin Gothic Medium'; 
+  font-size: 40px; 
+  border-radius: 5px; 
+}
+#pricingPage-Header-2{
+  margin: 0px; 
+  /* margin-bottom: 5px;  */
+  padding: 0px; 
+  
+}
+#priceFeed-Container{
+  display: flex; 
+  flex-direction: row; 
+  width: 365px;
+  height: 50px;  
+  background-color: rgb(250, 236, 202);
+  max-width: 100%;
+  /* border-radius: 10%; */
+}
+#storeInfoDiv-left, #storeInfoDiv-right{
+  width: 97.5px;
+  height: 50px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25px; 
+  
+}
+#storeInfoDiv-left>span, #storeInfoDiv-middle>span {
+  position: relative; 
+  top: 15px; 
+  left: 20px; 
+}
+#storeInfoDiv-middle{
+  width: 195px; 
+  font-size: 25px; 
+  text-align: left; 
+  
+}
+#bidButtonImage{
+  width: 97.5px;
+  height: 75px; 
+  /* margin-bottom: -50px;  */
+  position: relative; 
+  bottom: 8px; 
+  right: 10px; 
+
+}
+#storeInfoDiv-right{
+  width: 97.5px; 
+  height: 50px; 
+  background-color:darkblue; 
+  color: white; 
+  cursor: pointer;
+
+  /* border-radius: 10%; */
 }
 
-.App-link {
-  color: #61dafb;
+#scanNewItemButton{
+  width: 200px;
+  margin-top: 50px; 
+  background-color: #D7A124; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+  font-size: 20px; 
+  cursor: pointer;
+  border: none; 
+  border-radius: 5%;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#scanNewItemButton:hover{
+  background-color: white; 
+  
+  
 }
