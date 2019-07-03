@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       process: (barcode) => { dispatch(processBarcode(barcode)) }
     }
   }
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapDispatchToProps)(Home);
