@@ -59,8 +59,8 @@ const GridExampleCelledInternally = () => (
                         <label><strong>Description: </strong><text>Here is my first item description...Here is my first item description...Here is my first item description...Here is my first item description...Here is my first item description...Here is my first item description...Here is my first item description...Here is my first item description...</text></label>
                     </div>
                     <div id="bidCard-section-right" class="bidCard-section">
-                        <button>Accept</button>
-                        <button>Decline</button>
+                        <button class="bidResponseButton">Accept</button>
+                        <button class="bidResponseButton">Decline</button>
                     </div>
                 </div>
             </div>

@@ -96,7 +96,7 @@ input{
   flex-direction: row; 
   height: 10%; 
   border: 0.1px solid black; 
-  background-color: rgb(245, 225, 179); 
+  background-color: rgb(250, 236, 202); 
  
 }
 .bidCard-section{   
@@ -108,9 +108,23 @@ input{
 }
 #bidCard-section-middle{
   width: 70%; 
+  overflow: auto;
+  padding: 5px;  
   
 }
 #bidCard-section-right{
   width: 10%; 
-  
+  display: flex; 
+  flex-flow: row wrap; 
+
+  padding: 10px;  
+}
+.bidResponseButton{
+  margin-top: 0px;
+  border-radius: 30%; 
+  height: 30px;  
+  width: 70px; 
+  background-color: #D7A124; 
+  color: white; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
