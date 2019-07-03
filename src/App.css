@@ -22,7 +22,7 @@ input{
   justify-content: space-between; 
   height: 100px;
   width: 100%;  
-  background-color: #F0ECE3; 
+  background-color: white; 
 }
 .accountLogos{
   margin: 10px; 
@@ -60,7 +60,7 @@ input{
   margin: 0px; 
   padding: 0px; 
   flex-direction: row; 
-  background-color: #F0ECE3; 
+  background-color: white; 
 }
 
 #leftCol{
@@ -241,3 +241,71 @@ a {
 }
 
 /* -------END: styling for client login page ------------ */
+/* -------START: styling for pricing page ------------ */
+#pricingPage-Container{
+  display:flex; 
+  flex-direction: column; 
+  align-items: center;
+  font-family: 'Franklin Gothic Medium';
+}
+#pricingPageLogo{
+  margin-bottom: -74px; 
+}
+#pricingPage-Header{
+  position: relative;
+  right: 86px; 
+  margin: 0px; 
+  padding: 0px; 
+
+}
+#lowestPriceDiv{
+  margin: 0px; 
+  padding: 5px; 
+  /* margin-bottom: 10px;  */
+  background-color: #D7A124;
+  width: 365px; 
+  max-width: 100%;
+  text-align: center; 
+  font-family: 'Franklin Gothic Medium'; 
+  font-size: 40px; 
+  border-radius: 5px; 
+}
+#pricingPage-Header-2{
+  margin: 0px; 
+  margin-bottom: 5px; 
+  padding: 0px; 
+  
+}
+#priceFeed-Container{
+  display: flex; 
+  flex-direction: row; 
+  width: 365px;
+  height: 50px;  
+  background-color: rgb(250, 236, 202);
+  max-width: 100%;
+}
+#storeInfoDiv-left, #storeInfoDiv-right{
+  width: 97.5px;
+  height: 50px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25px; 
+  text-align: left; 
+  
+}
+#storeInfoDiv-middle{
+  width: 195px; 
+  font-size: 25px; 
+  text-align: left; 
+}
+#bidButtonImage{
+  width: 97.5px;
+  height: 75px; 
+  position: relative; 
+  bottom: 8px; 
+  right: 10px; 
+
+}
+#storeInfoDiv-right{
+  background-color:darkblue; 
+  color: white; 
+}
