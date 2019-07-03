@@ -211,5 +211,33 @@ video{
     transition: box-shadow .1s ease,border-color .1s ease;
     box-shadow: none;
 }
-
 /* -------END: styling for User Scanning Page ------------ */
+
+
+/* -------START: styling for client login page ------------ */
+.ui.header>.image:not(.icon), .ui.header>img {
+  display: inline-block;
+  margin-top: .14285714em;
+  width: 4.5em;
+  height: auto;
+  vertical-align: middle;
+  color: #D7A124;
+
+}
+
+.ui.teal.header {
+  color: #D7A124!important;
+}
+
+.ui.teal.button, .ui.teal.buttons .button,.ui.teal.button:hover  {
+  background-color: #D7A124;
+  text-shadow: none;
+  background-image: none;
+}
+
+a {
+  color: #D7A124;
+  text-decoration: none;
+}
+
+/* -------END: styling for client login page ------------ */
