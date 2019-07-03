@@ -17,14 +17,13 @@ class PricingPage extends Component {
             <h2 id='pricingPage-Header-2'>AVAILABLE AT BELOW STORES: </h2>       
             {/* pricefeed div */}
             <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left">1.</div>
-              <div id="storeInfoDiv-middle">Walmart</div>
+              <div id="storeInfoDiv-left"><span>1.</span></div>
+              <div id="storeInfoDiv-middle"><span>Walmart</span></div>
+              <div id="storeInfoDiv-middle"><span>$0.00</span></div>
               <button id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
             </div>
-            <button>Scan Another Item</button>    
-            <div>
-                <input id='scanPageInput'type="text" placeholder="Insert product name or UPC number"/>     
-            </div>
+
+            <button id="scanNewItemButton">Scan Another Item</button>    
         </div>
 
 
