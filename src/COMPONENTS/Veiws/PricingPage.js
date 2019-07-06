@@ -18,12 +18,26 @@ class PricingPage extends Component {
             {/* pricefeed div */}
             <div id="priceFeed-Container">
               <div id="storeInfoDiv-left"><span>1.</span></div>
-              <div id="storeInfoDiv-middle"><span>Walmart</span></div>
-              <div id="storeInfoDiv-middle"><span>$0.00</span></div>
+              <div id="storeInfoDiv-middle"><span id="storeName">TJ Maxx </span></div>
+              <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
               <button id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
             </div>
+            <div id="priceFeed-Container">
+              <div id="storeInfoDiv-left"><span>2.</span></div>
+              <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
+              <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+              <button id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+            </div>
+            <div id="priceFeed-Container">
+              <div id="storeInfoDiv-left"><span>3.</span></div>
+              <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
+              <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+              <button id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+            </div>
+            {/* BidButton */}
+            
 
-            <button id="scanNewItemButton">Scan Another Item</button>    
+            <button id="scanNewItemButton"><bold>Scan Another Item</bold></button>    
         </div>
 
 

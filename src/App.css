@@ -261,10 +261,11 @@ a {
 }
 #lowestPriceDiv{
   margin: 0px; 
-  padding: 5px; 
+  /* padding: 5px;  */
   margin-bottom: 15px; 
   background-color: #D7A124;
   width: 365px; 
+  height: 45px; 
   max-width: 100%;
   text-align: center; 
   font-family: 'Franklin Gothic Medium'; 
@@ -286,23 +287,48 @@ a {
   max-width: 100%;
   /* border-radius: 10%; */
 }
-#storeInfoDiv-left, #storeInfoDiv-right{
-  width: 97.5px;
+#storeInfoDiv-left{
+  width: 45px;
   height: 50px; 
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 25px; 
   
 }
-#storeInfoDiv-left>span, #storeInfoDiv-middle>span {
+#storeInfoDiv-right{
+  width: 97.5px;
+  height: 50px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 25px; 
+  /* margin-right: 95px;  */
+}
+
+
+#storeInfoDiv-left>span{
   position: relative; 
   top: 15px; 
-  left: 20px; 
+  left: 8px; 
+  /* /* margin-right: -3px;   */
 }
-#storeInfoDiv-middle{
-  width: 195px; 
+
+#storeInfoDiv-middle {
+  width: 150px; 
   font-size: 25px; 
   text-align: left; 
+  position: relative; 
+  top: 15px; 
+  left: -8px; 
+  margin-left: 4px; 
+  overflow: auto; 
   
+}
+#storeInfoDiv-middle2{
+  width: 150px; 
+  font-size: 25px; 
+  text-align: left; 
+  position: relative; 
+  top: 15px; 
+  margin-left: 4px; 
+  overflow: auto; 
 }
 #bidButtonImage{
   width: 97.5px;
@@ -336,7 +362,8 @@ a {
 }
 
 #scanNewItemButton:hover{
-  background-color: white; 
+  background-color: darkblue; 
+  color: white; 
   
   
 }
