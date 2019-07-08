@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Scanner from "../Scanner"
 import {processBarcode} from "../../actions/scanner"
+import logo from "../../images/bid_buddy_logo_3.png";
+import 'semantic-ui-css/semantic.min.css'
+import { Grid, Image, Form } from 'semantic-ui-react'
+
 
 
 class Home extends Component {
@@ -16,12 +20,17 @@ class Home extends Component {
   }
 
     render() { 
-        return (  
-            <div>
-                Bid Buddies
-                <Scanner onBarcodeDetect={this._onBarcodeDetect} />
-            </div>
-        );
+        return (
+        <div id="scanPage-Container">
+          <img id='scanPageLogo' src={logo}/>        
+          <div>
+            <input id='scanPageInput'type="text" placeholder="Insert product name or UPC number"/>     
+          </div>
+          <div id="scannerDiv">
+            <Scanner onBarcodeDetect={this._onBarcodeDetect} />
+          </div>
+        </div> 
+      ) 
     }
 }
 
