@@ -66,7 +66,7 @@ class PricingPage extends Component {
             </div>
           </div>
         </Modal>
-      ) : false;
+      ) : null;
       
         return(
           <div id="pricingPage-Container">
