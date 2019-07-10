@@ -97,4 +97,57 @@ req.write(`${lookupObjectJSON}`)
 req.end()
 }
 
+export const getUpc = (text) => {
+  return dispatch => {
+  let url = "api.upcitemdb.com/prod/trial/lookup"
+    
+  let req = new Request(url , {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:3000'
+    },
+    mode: 'no-cors'
+  })
+  
+  let product = null
+  fetch(req)
+  .catch(err => console.log('error', err))
+  .then(res => {
+    console.log(res.status)
+    if(res.status !== 200){
+      return {
+        resStatus: res.status
+      }
+    } else if(res.status === 200) {
+      console.log(res)
+      return res.json()
+      
+    }
+  })
+  .then(parsedRes => {
+    if(parsedRes.resStatus !== 200){
+      parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
+    } else {
+      product = parsedRes
+      console.log(product)
+      dispatch(productDetected(product))
+    }
+  })
+  }
+}
+
+export const productDetected = (product) => {
+  return {
+    type: 'PRODUCT_DETECTED',
+    payload: product
+  }
+}
+
+export const invalidBarcode = (err) => {
+  let errText = err === 'noAPI' ? 'NO_API_KEY' : 'INVALID_BARCODE'
+  return {
+    type: errText,
+  }
+}
 //test
