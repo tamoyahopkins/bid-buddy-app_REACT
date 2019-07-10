@@ -2,8 +2,10 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
+# /.pnp
+# .pnp.js
+/bid-buddy
+/src/COMPONENTS
 
 # testing
 /coverage

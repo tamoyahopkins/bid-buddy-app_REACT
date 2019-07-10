@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button, Modal, Header } from "semantic-ui-react";
+import React, { Component } from "./node_modules/react";
+import { Button, Modal, Header } from "./node_modules/semantic-ui-react";
 import NewUserForm from "./newUserForm"
 
 class ButtonRow extends Component {
@@ -18,7 +18,7 @@ class ButtonRow extends Component {
       this.setState({ modalOpen: false })
     } 
 
-    //This waits 
+    //This waits
     setTimeout(
       ()=>{if(this.state.isUserFormValid) this.setState({ modalOpen: false })}, 
       300
@@ -52,3 +52,6 @@ class ButtonRow extends Component {
 }
 
 export default ButtonRow; 
+
+
+//test

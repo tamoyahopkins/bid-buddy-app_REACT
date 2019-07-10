@@ -66,3 +66,5 @@ const initialState = {
   }
   
   export default scannedItems
+
+  //test

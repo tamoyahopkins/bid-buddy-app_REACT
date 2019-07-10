@@ -25,3 +25,4 @@ export default class Client_BIDCARD extends Component {
         )
     }
 }
+//test

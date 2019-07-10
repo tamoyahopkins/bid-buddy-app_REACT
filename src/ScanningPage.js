@@ -27,3 +27,4 @@ class ScanningPage extends Component {
   }
 }
 export default ScanningPage;
+//test

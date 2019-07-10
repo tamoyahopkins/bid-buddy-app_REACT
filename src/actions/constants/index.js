@@ -14,3 +14,5 @@ export const handleJsonResponse = res => {
     throw result;
   });
 };
+
+//test

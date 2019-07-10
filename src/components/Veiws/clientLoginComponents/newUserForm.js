@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Form } from "semantic-ui-react";
+import React, { Component } from "./node_modules/react";
+import { Form } from "./node_modules/semantic-ui-react";
 import { createUserAction as createUser } from "../../../actions/users"
-import { connect } from "react-redux";
+import { connect } from "./node_modules/react-redux";
 
 class NewUserForm extends Component {
     state = {
@@ -62,3 +62,5 @@ export default connect(
   }),
   { createUser }
 )(NewUserForm);
+
+//test

@@ -59,3 +59,5 @@ class Scanner extends Component {
 }
 
 export default Scanner
+
+//test

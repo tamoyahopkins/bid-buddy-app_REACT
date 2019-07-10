@@ -1,6 +1,6 @@
 // // import { loginThenGoToUserProfile as login } from "../../../actions";
-import React, { Component } from "react";
-import { Form, Button } from "semantic-ui-react";
+import React, { Component } from "./node_modules/react";
+import { Form, Button } from "./node_modules/semantic-ui-react";
 // // import { connect } from "react-redux";
 
 export default class LoginForm extends Component {
@@ -41,3 +41,5 @@ export default class LoginForm extends Component {
     )
   }
 }
+
+//test
