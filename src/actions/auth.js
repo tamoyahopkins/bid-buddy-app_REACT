@@ -70,3 +70,4 @@ export const logoutLoggedInUser = loginData => dispatch => {
   .then(() => dispatch(push("/")))
   .catch(()=>(dispatch(push("/"))));
 }
+//test

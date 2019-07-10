@@ -108,3 +108,4 @@ class PricingPage extends Component {
 
 export default PricingPage;
 // ReactDOM.render(<PricingPage />, appRoot);
+//test

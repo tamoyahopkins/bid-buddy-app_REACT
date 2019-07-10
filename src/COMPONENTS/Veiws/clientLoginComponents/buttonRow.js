@@ -18,7 +18,7 @@ class ButtonRow extends Component {
       this.setState({ modalOpen: false })
     } 
 
-    //This waits 
+    //This waits
     setTimeout(
       ()=>{if(this.state.isUserFormValid) this.setState({ modalOpen: false })}, 
       300
@@ -52,3 +52,6 @@ class ButtonRow extends Component {
 }
 
 export default ButtonRow; 
+
+
+//test
