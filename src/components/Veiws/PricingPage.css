@@ -1,0 +1,31 @@
+
+.three.column.row{
+    background-color: #E7E7E6;
+    margin-left:450px;
+    margin-right:450px;
+    padding-top: 0rem;
+  
+  
+  }
+  
+  .grid.centered.rows{
+    padding:0;
+  }
+  
+  
+  .row.column{
+    height:40px;
+    padding-top:0rem;
+  }
+  
+  .two.wide.column{
+    background-color:#002060;
+    height:40px
+  }
+  
+  
+  .field{
+    margin-top:200px;
+  }
+
+  /* test */
