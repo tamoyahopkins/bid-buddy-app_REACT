@@ -37,8 +37,8 @@ class PricingPage extends Component {
   showModal = ()=> {
     // let showModal = !this.state.Modal
     this.setState({
-      Modal: this.state.Modal,
-      Modal1: true, 
+      Modal: true,
+      Modal1: this.state.Modal1, 
       Modal2: this.state.Modal2, 
       Modal3: this.state.Modal3  
      });
@@ -47,8 +47,8 @@ class PricingPage extends Component {
     let hideModal= !this.state.Modal
     let showModal1 = !this.state.Modal1
     this.setState({
-      Modal: true,
-      Modal1: true, 
+      Modal: hideModal,
+      Modal1: showModal1, 
       Modal2: this.state.Modal2,
       Modal3: this.state.Modal3
     })
@@ -61,7 +61,7 @@ class PricingPage extends Component {
     // let closeModal1 = false
     // let closeModal = !this.state.Modal
     this.setState({
-      Modal: this.state.Modal,
+      Modal: !this.state.Modal,
       Modal1: false, 
       Modal2: this.state.Modal2, 
       Modal3: this.state.Modal3
@@ -200,11 +200,11 @@ class PricingPage extends Component {
               <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
               <button onClick={this.showModal} id="storeInfoDiv-right">
                 <img id="bidButtonImage" src={handShake}/> 
+              </button>
                 {modal}
                 {modal1}
                 {modal2}
                 {modal3}
-              </button>
             </div>
             <div id="priceFeed-Container">
               <div id="storeInfoDiv-left"><span>2.</span></div>
