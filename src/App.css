@@ -247,6 +247,7 @@ a {
   flex-direction: column; 
   align-items: center;
   font-family: 'Franklin Gothic Medium';
+  height: auto; 
   overflow: hidden;
 }
 #pricingPageLogo{
@@ -370,29 +371,34 @@ a {
 }
 
 /* -------START: modalCSS------ */
+/* modal-root = div
+ --> .modal = creates a div (no class)
+  --> .modal = div container with current Modal content */
 
 #modal-root {
   position: fixed;
+  top: 94px; 
+  left: 330px; 
   z-index: 999;
 }
+
+/* .modalContainer{
+  overflow: hidden;
+} */
 
 .modal {
   display: flex;
   background-color: rgba(1, 1, 100, 0.842);
-  padding: 35px;  
-  position: fixed;
-  height: auto;
-  width: 50%;
-  top: 210px;
-  left: 330px;
   flex-direction: column; 
   justify-content: center;
-  /* align-items: space-between; */
+  padding: 35px;  
+  min-height: 415px;
+  width: 650px;
   color: white; 
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
   font-size: 20px; 
   overflow: auto; 
 }
+
 .modal_clientLogo{
  position: relative; 
 left: 480px;
@@ -406,16 +412,38 @@ top: -15px;
 
 #modal_Form{
   display: flex; 
-  flex-direction: column; 
+  flex-direction: column;
+  
+
 }
 #modal_Form>input {
   background-color: rgba(215, 161, 36, 0.89);
 }
 
+#sampleCoupon {
+  height: 100px; 
+  width: 300px;
+  background-color:  rgba(215, 161, 36, 0.89);
+  align-self: center; 
+  margin-bottom: 15px; 
+}
 
+#sampleCoupon > img {
+  height: 75px; 
+  width: 200px;
+  margin-left: 50px; 
+  margin-top: 13px; 
+}
+#modal3_image{
+  height: 225px; 
+  width: 200px; 
+  margin-bottom: 20px; 
+  align-self: center; 
+}
+.modal > h2, .modal > h3, .modal > h1 {
+  align-self: center; 
+}
 
-
-/* test */
 
 
 
