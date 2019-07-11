@@ -5,7 +5,9 @@ import 'semantic-ui-css/semantic.min.css'
 // import { Grid, Image, Form, Container } from 'semantic-ui-react'
 import logo from "../../images/bid_buddy_logo_3.png";
 import handShake from "../../images/agreementMetIcon.png"
-import { formatWithOptions } from 'util';
+import shrug from "../../images/shrugEmoji.jpg"
+
+// import { formatWithOptions } from 'util';
 
 const ReactDOM = require('react-dom'); 
 const modalRoot = document.getElementById('modal-root');
@@ -43,12 +45,13 @@ class PricingPage extends Component {
       Modal3: this.state.Modal3  
      });
   }
+  //click confirm Bid button
   handleBid = ()=> {
     let hideModal= !this.state.Modal
     let showModal1 = !this.state.Modal1
     this.setState({
-      Modal: hideModal,
-      Modal1: showModal1, 
+      Modal: hideModal, //false
+      Modal1: showModal1, //true 
       Modal2: this.state.Modal2,
       Modal3: this.state.Modal3
     })
@@ -56,13 +59,22 @@ class PricingPage extends Component {
     // this.showCorrectModal()
  
   }
+
+  closeModals = () => {
+    this.setState({
+      Modal: false,
+      Modal1: false, 
+      Modal2: false, 
+      Modal3: false
+    })
+  }
   closeModal1 = () => {
     console.log("state before modal button resets state", this)
     // let closeModal1 = false
     // let closeModal = !this.state.Modal
     this.setState({
-      Modal: !this.state.Modal,
-      Modal1: false, 
+      Modal: this.state.Modal,
+      Modal1: !this.state.Modal1, //false 
       Modal2: this.state.Modal2, 
       Modal3: this.state.Modal3
     },()=> console.log("closing modal 1", this.state)); 
@@ -71,49 +83,46 @@ class PricingPage extends Component {
   showCorrectModal = () => {
     console.log("state passed to Modal1", this.state)
     let randomNumber = Math.floor(Math.random()*10)
-  
+    //state = Modal1 = true, all others = false
     if (randomNumber < 3) {
-      let closeModal= !this.state.Modal
-      let showModal3 = !this.state.Modal3
+      //show Modal3
       this.setState({
-        Modal: closeModal,
+        Modal: !this.state.Modal,
         Modal1: this.state.Modal1, 
         Modal2: this.state.Modal2, 
-        Modal3: showModal3
+        Modal3: !this.state.Modal3
       })
       // console.log("picked showModal3", this.state)
     }
     else if (randomNumber % 2) {
-      let closeModal= !this.state.Modal
-      let showModal1 = !this.state.Modal1
+      //show Modal1
       this.setState({
-        Modal: closeModal,
-        Modal1: showModal1,
+        Modal: !this.state.Modal,
+        Modal1: !this.state.Modal1, 
         Modal2: this.state.Modal2, 
         Modal3: this.state.Modal3
       })
-      console.log("pickeed showmodal1: changed modal state to false, modal1 state to true", this.state)
+      // console.log("pickeed showmodal1: changed modal state to false, modal1 state to true", this.state)
     }
     else if (randomNumber % 3) {
-      let closeModal= !this.state.Modal
-      let showModal2 = !this.state.Modal2
+      //show Modal2
       this.setState({
-        Modal: closeModal,
+        Modal: !this.state.Modal,
         Modal1: this.state.Modal1, 
-        Modal2: showModal2, 
+        Modal2: !this.state.Modal2, 
         Modal3: this.state.Modal3
       })
       
-      console.log("picked showModal2", this.state)
+      // console.log("picked showModal2", this.state)
     }
   }
-//modal = showsCorrectModal
+
   modal = (
     <Modal>
     <div className="modal">
       <img className="modal_clientLogo" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg" ></img>
       <div className="modal_userForm">
-        <form onSubmit={this.handleBid} id="modal_Form">
+        <form onSubmit={this.showCorrectModal} id="modal_Form">
           <label>Listed Price: </label>
           <input></input>
           <label>Enter Bid Amount:</label>
@@ -147,7 +156,7 @@ class PricingPage extends Component {
             <div id="sampleCoupon">
               <img src="https://internationalbarcodes.com/wp-content/uploads/sites/95/2013/11/SSCC-Pallet-Barcode.jpg"/>
             </div>
-            <button onClick={this.closeModal1} type="submit">Go Back</button>
+            <button onClick={this.closeModals}>Go Back</button>
           </div>
          
         </Modal>
@@ -155,28 +164,25 @@ class PricingPage extends Component {
   
   modal2 = (
     <Modal>
-      <form>
         <div className="modal">
-          <h2>OFFER PENDING...</h2>
-          <h3>This store will be let you know if your bid was accepted within 24 hours. 
-            <br></br>
+          <h2>OFFER PENDING...
+            <br/><br/>
+          This store will be let you know if your bid was accepted within 24 hours. 
+            <br/><br/>
           Be sure to check your BID BUDDY account page for updates.
-          </h3>
-          <button type="submit">Close</button>
+          </h2>
+          <button onClick={this.closeModals}>Close</button>
         </div>
-        </form>
       </Modal>
   )
 
   modal3 = (
     <Modal>
-      <form>
           <div className="modal">
-            <h2>OFFER DECLINED.</h2>
-            <h3>Please bid again.</h3>
-            <button type="submit">Close</button>
+            <h2>OFFER DECLINED.  PLEASE BID AGAIN.</h2>
+            <img id="modal3_image"src={shrug}/>
+            <button onClick={this.closeModals}>Close</button>
           </div>
-        </form>
       </Modal>
   )
   
@@ -210,13 +216,13 @@ class PricingPage extends Component {
               <div id="storeInfoDiv-left"><span>2.</span></div>
               <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
               <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
-              <button id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+              <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
             </div>
             <div id="priceFeed-Container">
               <div id="storeInfoDiv-left"><span>3.</span></div>
               <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
               <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
-              <button id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+              <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
             </div>
             {/* BidButton code below */}
             
