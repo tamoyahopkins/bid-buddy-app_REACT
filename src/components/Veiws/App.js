@@ -4,6 +4,7 @@ import { Home } from "..";
 import ClientLogin from "./clientLoginPage"
 import ClientAccount from "./clientAccountPage";
 import PricingPage from "./PricingPage";
+import UserLogin from "./userLoginPage"; 
 
 // import { AuthPage } from "../../../capstone-front/src/components";
 
@@ -16,6 +17,8 @@ class App extends Component {
         <Route exact path="/clientlogin" render={() => <ClientLogin/>} />
         <Route exact path="/clientaccount" render={() => <ClientAccount/>} />
         <Route exact path="/pricingpage" render={() => <PricingPage/>} />
+        <Route exact path="/userlogin" render={() => <UserLogin/>} />
+
 
 
 
