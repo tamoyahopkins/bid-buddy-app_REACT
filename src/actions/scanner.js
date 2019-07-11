@@ -97,17 +97,22 @@ req.write(`${lookupObjectJSON}`)
 req.end()
 }
 
-export const getUpc = (text) => {
+export const getUpc = (code) => {
   return dispatch => {
-  let url = "api.upcitemdb.com/prod/trial/lookup"
+    let params = code.text;
+    console.log(params)
+  const proxyurl = "https://cors-anywhere.herokuapp.com/"
+  let url = `https://api.upcitemdb.com/prod/trial/lookup?upc=${params}`
     
-  let req = new Request(url , {
-    headers: {
+  let req = new Request( proxyurl + url , {
+    //hostname: 'api.upcitemdb.com',
+    method: 'GET',
+    headers: { 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:3000'
+      'Access-Control-Allow-Origin': '*'
     },
-    mode: 'no-cors'
+    //mode: 'no-cors'
   })
   
   let product = null
@@ -120,17 +125,17 @@ export const getUpc = (text) => {
         resStatus: res.status
       }
     } else if(res.status === 200) {
-      console.log(res)
+      // console.log(res)
       return res.json()
       
     }
   })
   .then(parsedRes => {
+    console.log(parsedRes)
     if(parsedRes.resStatus !== 200){
       parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
     } else {
       product = parsedRes
-      console.log(product)
       dispatch(productDetected(product))
     }
   })
