@@ -6,6 +6,9 @@ import ClientAccount from "./clientAccountPage";
 import PricingPage from "./PricingPage";
 import UserLogin from "./userLoginPage"; 
 
+import '../../App.css'; 
+import 'semantic-ui-css/semantic.min.css'
+
 // import { AuthPage } from "../../../capstone-front/src/components";
 
 class App extends Component {
