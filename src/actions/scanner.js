@@ -97,6 +97,8 @@ req.write(`${lookupObjectJSON}`)
 req.end()
 }
 
+//example for query by search
+// https://api.upcitemdb.com/prod/trial/search?s=Apple%20iPhone%206%2C%20Space%20Gray%2C%2064%20GB%20(T-Mobile)&match_mode=0&type=product
 export const getUpc = (code) => {
   return dispatch => {
     let params = code.text;
@@ -145,7 +147,7 @@ export const getUpc = (code) => {
   })
 }
 }
-  // 
+
   // if(parsedRes.resStatus !== 200){
   //   parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
   // } else {
