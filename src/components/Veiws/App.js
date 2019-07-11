@@ -4,6 +4,9 @@ import { Home } from "..";
 import ClientLogin from "./clientLoginPage"
 import ClientAccount from "./clientAccountPage";
 import PricingPage from "./PricingPage";
+import '../../App.css';
+import 'semantic-ui-css/semantic.min.css'
+
 
 // import { AuthPage } from "../../../capstone-front/src/components";
 
