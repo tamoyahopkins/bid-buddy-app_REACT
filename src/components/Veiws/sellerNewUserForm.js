@@ -5,45 +5,35 @@ import { connect } from "react-redux";
 
 class sellerNewUserForm extends Component {
     state = {
-       displayName: "",
+
+        displayName: "",
         password: "",
     };
-    handleRegister = e => {
+
+    handleChange = (e) => { 
+      this.setState( {[e.target.name]: e.target.value } ) 
+    }
+
+    handleSubmit = e => {
+      let promise = this.props.createUser(this.state)
+      const target = e.target
       e.preventDefault()
-  
-      if (this.state.password !== this.state.confirmPassword) {
-        this.setState({ passwordMatch: false })
-      } else {
-        this.props.register({ username: this.state.username, password: this.state.password, displayName: this.state.displayname })
-      }
+      this.props.onClose()
+      promise
+      .then(this.props.setValidity(true))
+      .catch(er=>{
+        this.props.setValidity(false)
+        document.getElementById("").setCustomValidity(" already Taken")
+        target.reportValidity()
+        setTimeout(() => {
+          document.getElementById("").setCustomValidity("")
+        }, 1000);
+      })
     }
-  
-    handleChange = e => {
-      this.setState({ passwordMatch: true })
-      this.setState({ [e.target.name]: e.target.value });
+
+    verifyPassword(input){
+      return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
     }
-  
-
-    // handleSubmit = e => {
-    //   let promise = this.props.createUser(this.state)
-    //   const target = e.target
-    //   e.preventDefault()
-    //   this.props.onClose()
-    //   promise
-    //   .then(this.props.setValidity(true))
-    //   .catch(er=>{
-    //     this.props.setValidity(false)
-    //     document.getElementById("").setCustomValidity(" already Taken")
-    //     target.reportValidity()
-    //     setTimeout(() => {
-    //       document.getElementById("").setCustomValidity("")
-    //     }, 1000);
-    //   })
-    // }
-
-    // verifyPassword(input){
-    //   return (input.target.value !== document.getElementById("password").value) ?  input.target.setCustomValidity('Password Must be Matching.') : input.target.setCustomValidity('');
-    // }
 
     render() {
         return (
@@ -60,7 +50,6 @@ class sellerNewUserForm extends Component {
             <hr/>
             <Form.Button content='Submit' />
           </Form>
-
         </div>
         )
       }

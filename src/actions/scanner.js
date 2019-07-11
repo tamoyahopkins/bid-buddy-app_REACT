@@ -97,8 +97,6 @@ req.write(`${lookupObjectJSON}`)
 req.end()
 }
 
-//example for query by search
-// https://api.upcitemdb.com/prod/trial/search?s=Apple%20iPhone%206%2C%20Space%20Gray%2C%2064%20GB%20(T-Mobile)&match_mode=0&type=product
 export const getUpc = (code) => {
   return dispatch => {
     let params = code.text;
@@ -133,24 +131,16 @@ export const getUpc = (code) => {
     }
   })
   .then(parsedRes => {
-    console.log(parsedRes.items[0].brand)
-    product = {
-      image: parsedRes.items[0].images[0],
-      upc: parsedRes.items[0].upc,
-      name: parsedRes.items[0].title,
-      brand : parsedRes.items[0].brand,
-      lowest_recorded_price: parsedRes.items[0].lowest_recorded_price,
-      highest_recorded_price: parsedRes.items[0].highest_recorded_price,
-      description : parsedRes.items[0].description
+    console.log(parsedRes)
+    if(parsedRes.resStatus !== 200){
+      parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
+    } else {
+      product = parsedRes
+      dispatch(productDetected(product))
     }
-    dispatch(productDetected(product))
   })
+  }
 }
-}
-
-  // if(parsedRes.resStatus !== 200){
-  //   parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
-  // } else {
 
 export const productDetected = (product) => {
   return {

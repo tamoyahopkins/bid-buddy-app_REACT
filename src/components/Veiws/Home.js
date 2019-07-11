@@ -6,7 +6,6 @@ import logo from "../../images/bid_buddy_logo_3.png";
 import 'semantic-ui-css/semantic.min.css'
 import { Grid, Image, Form, Button } from 'semantic-ui-react'
 import { throws } from "assert";
-import Product from "../product"
 
 
 
@@ -65,8 +64,7 @@ class Home extends Component {
           <div id="scannerDiv">
             <Scanner onBarcodeDetect={this._onBarcodeDetect} />
           </div>
-          <Product
-          item={this.props.productScanned} />
+          <div>{this.props.productScanned} j </div>
         </div>
       ) 
     }
