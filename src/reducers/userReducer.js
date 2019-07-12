@@ -1,9 +1,12 @@
-import { REGISTER, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS } from "../actions";
+import { REGISTER, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS } from "../actions/auth";
 
 const initialState = {
     getUserError: null,
     user: null,
     getUserLoading: false,
+    register: null,
+    registerLoading: false,
+    registerError: null
   }
 
 export default (state = initialState, action) => {
@@ -11,13 +14,13 @@ export default (state = initialState, action) => {
       case REGISTER:
         return {
           ...state,
-          loginLoading: true,
-          loginError: null
+          registerLoading: true,
+          registerError: null
         };
       case REGISTER_SUCCESS:
-        return { ...state, login: action.payload, loginLoading: false };
+        return { ...state, register: action.payload, registerLoading: false };
       case REGISTER_FAIL:
-        return { ...state, loginError: action.payload, loginLoading: false };
+        return { ...state, registerError: action.payload, registerLoading: false };
       case LOGOUT_SUCCESS:
         return { ...initialState };
     

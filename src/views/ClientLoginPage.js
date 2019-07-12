@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui
 import logo from "../images/bid_buddy_logo_3.png";
 import { loginThenGoToUserProfile as login } from "../actions/auth"
 import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 
 class LoginForm extends Component {
   state = { username: "", password: "" };
@@ -53,7 +54,7 @@ render() {
         </Segment>
       </Form>
       <Message>
-        New to us? <a href='#'> Sign Up</a>
+        New to us? <Link to={'/register'} className={"registerLink"}>Sign Up</Link>
       </Message>
     </Grid.Column>
   </Grid>
