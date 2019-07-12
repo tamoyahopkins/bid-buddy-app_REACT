@@ -1,16 +1,17 @@
 
 import React, {Component} from 'react'; 
+import { Route } from 'react-router-dom'
 import './PricingPage.css';
 import 'semantic-ui-css/semantic.min.css'
-// import { Grid, Image, Form, Container } from 'semantic-ui-react'
 import logo from "../../images/bid_buddy_logo_3.png";
 import handShake from "../../images/agreementMetIcon.png"
 import shrug from "../../images/shrugEmoji.jpg"
-
-// import { formatWithOptions } from 'util';
-
+import Nav from "./PricingPage_NAV"
+import { link } from 'fs';
 const ReactDOM = require('react-dom'); 
 const modalRoot = document.getElementById('modal-root');
+
+// import { formatWithOptions } from 'util';
 
 class Modal extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class PricingPage extends Component {
       Modal3: this.state.Modal3  
      });
   }
+  
   //click confirm Bid button
   handleBid = ()=> {
     let hideModal= !this.state.Modal
@@ -59,7 +61,6 @@ class PricingPage extends Component {
     // this.showCorrectModal()
  
   }
-
   closeModals = () => {
     this.setState({
       Modal: false,
@@ -69,9 +70,7 @@ class PricingPage extends Component {
     })
   }
   closeModal1 = () => {
-    console.log("state before modal button resets state", this)
-    // let closeModal1 = false
-    // let closeModal = !this.state.Modal
+    // console.log("state before modal button resets state", this)
     this.setState({
       Modal: this.state.Modal,
       Modal1: !this.state.Modal1, //false 
@@ -146,6 +145,7 @@ class PricingPage extends Component {
     </div>
   </Modal>
   )
+
   modal1 = (
       <Modal>
         
@@ -161,7 +161,7 @@ class PricingPage extends Component {
          
         </Modal>
     )
-  
+
   modal2 = (
     <Modal>
         <div className="modal">
@@ -195,10 +195,11 @@ class PricingPage extends Component {
       
         return(
           <div id="pricingPage-Container">
+            <Nav logoutLocation='/userlogin'></Nav>
             <img id='pricingPageLogo'src={logo}/> 
             <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
             <h2 id="lowestPriceDiv">$0</h2>    
-            <h2 id='pricingPage-Header-2'>AVAILABLE AT BELOW STORES: </h2>       
+            <h2 id='pricingPage-Header-2'>AVAILABLE AT: </h2>       
             {/* pricefeed div code below */}
             <div id="priceFeed-Container">
               <div id="storeInfoDiv-left"><span>1.</span></div>
@@ -226,8 +227,10 @@ class PricingPage extends Component {
             </div>
             {/* BidButton code below */}
             
-
-            <button id="scanNewItemButton"><strong>Scan another item</strong></button>    
+            <div id="pricingPageButtons-Container">
+                <button id="goToVouchersButton"><strong>Go To Vouchers</strong></button> 
+              <button id="scanNewItemButton" onClick={()=> window.location.href='/'}><strong>Scan another item</strong></button> 
+            </div>  
         </div>
 
 
