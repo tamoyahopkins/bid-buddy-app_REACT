@@ -41,10 +41,6 @@ class Home extends Component {
     console.log("test")
   };
 
-
-
-
-
     render() { 
       const { text } =  this.state;
 
@@ -71,7 +67,6 @@ class Home extends Component {
       ) 
     }
 }
-
 
 const mapStateToProps = (state, ownProps) => {
   return {
