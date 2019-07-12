@@ -45,7 +45,6 @@ class Scanner extends Component {
     Quagga.offProcessed()
     this.props.onBarcodeDetect(res.codeResult.code)
     console.log(res.codeResult)
-    
   }
 
 

@@ -4,9 +4,9 @@ import Scanner from "../components/Scanner"
 import { getUpc } from "../actions/scanner"
 import logo from "../images/bid_buddy_logo_3.png";
 import 'semantic-ui-css/semantic.min.css'
-import { Grid, Image, Form, Button } from 'semantic-ui-react'
-import { throws } from "assert";
 import Product from "../components/Product"
+import { processBarcode } from "../actions/scanner"
+ import { Button } from 'semantic-ui-react'
 
 
 
@@ -20,12 +20,13 @@ class Home extends Component {
       // this._onBarcodeDetect = this._onBarcodeDetect.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
       this.handleChange = this.handleChange.bind(this)
+      this.onBarcodeDetect = this.onBarcodeDetect.bind(this)
   }
 
 
-  // _onBarcodeDetect(barcode) {
-  //     this.props.process(barcode)
-  // }
+  onBarcodeDetect(barcode) {
+      this.props.process(barcode)
+  }
 
   // handle text change in input
   handleChange = e => {
@@ -63,7 +64,7 @@ class Home extends Component {
           ></Button>
           
           <div id="scannerDiv">
-            <Scanner onBarcodeDetect={this._onBarcodeDetect} />
+            <Scanner onBarcodeDetect={this.onBarcodeDetect} />
           </div>
           <Product
           item={this.props.productScanned} />
@@ -77,6 +78,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     productScanned: state.scanned.productScanned,
     scan: state.scanned.startScanning,
+    invalid: state.scanned.invalidBarcode,
+    noApi: state.scanned.noApi
   }
 }
 
