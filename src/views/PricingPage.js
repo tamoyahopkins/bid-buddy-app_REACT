@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import './PricingPage.css';
 import 'semantic-ui-css/semantic.min.css'
 import { Grid, Image, Form } from 'semantic-ui-react'
-import logo from "../../images/bid_buddy_logo_3.png";
-import handShake from "../../images/agreementMetIcon.png"
+import logo from "../images/bid_buddy_logo_3.png";
+import handShake from "../images/agreementMetIcon.png"
 
 const ReactDOM = require('react-dom'); 
 const modalRoot = document.getElementById('modal-root');

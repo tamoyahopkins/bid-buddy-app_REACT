@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import logo from "../../images/bid_buddy_logo_3.png";
-import { loginThenGoToUserProfile as login } from "../../actions/auth"
+import logo from "../images/bid_buddy_logo_3.png";
+import { loginThenGoToUserProfile as login } from "../actions/auth"
 import { connect } from "react-redux";
 
 class LoginForm extends Component {

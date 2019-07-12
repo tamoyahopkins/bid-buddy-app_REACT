@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Scanner from "../Scanner"
-import { getUpc } from "../../actions/scanner"
-import logo from "../../images/bid_buddy_logo_3.png";
+import Scanner from "../components/Scanner"
+import { getUpc } from "../actions/scanner"
+import logo from "../images/bid_buddy_logo_3.png";
 import 'semantic-ui-css/semantic.min.css'
 import { Grid, Image, Form, Button } from 'semantic-ui-react'
 import { throws } from "assert";
-import Product from "../product"
+import Product from "../components/Product"
 
 
 

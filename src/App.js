@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "..";
-import ClientLogin from "./ClientLoginPage"
-import ClientAccount from "./ClientAccountPage";
-import PricingPage from "./PricingPage";
-import '../../App.css';
+import { Home } from "./components";
+import ClientLogin from "./views/ClientLoginPage"
+import ClientAccount from "./views/ClientAccountPage";
+import PricingPage from "./views/PricingPage";
+import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 
 // import { AuthPage } from "../../../capstone-front/src/components";
