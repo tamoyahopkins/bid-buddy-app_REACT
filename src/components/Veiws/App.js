@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Home } from "..";
-import ClientLogin from "./clientLoginPage"
-import ClientAccount from "./clientAccountPage";
+import ClientLogin from "./ClientLoginPage"
+import ClientAccount from "./ClientAccountPage";
 import PricingPage from "./PricingPage";
 import '../../App.css';
 import 'semantic-ui-css/semantic.min.css'
