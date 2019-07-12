@@ -41,6 +41,10 @@ class Home extends Component {
     console.log("test")
   };
 
+
+
+
+
     render() { 
       const { text } =  this.state;
 
@@ -62,11 +66,13 @@ class Home extends Component {
           <div id="scannerDiv">
             <Scanner onBarcodeDetect={this.onBarcodeDetect} />
           </div>
-          <div>{this.props.productScanned} j </div>
+          <Product
+          item={this.props.productScanned} />
         </div>
       ) 
     }
 }
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
