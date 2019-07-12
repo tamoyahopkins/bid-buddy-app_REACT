@@ -196,7 +196,7 @@ class PricingPage extends Component {
         return(
           <div id="pricingPage-Container">
             <Nav logoutLocation='/userlogin'></Nav>
-            <img id='pricingPageLogo'src={logo}/> 
+            <img id='pricingPageLogo'src={logo}/>
             <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
             <h2 id="lowestPriceDiv">$0</h2>    
             <h2 id='pricingPage-Header-2'>AVAILABLE AT: </h2>       
