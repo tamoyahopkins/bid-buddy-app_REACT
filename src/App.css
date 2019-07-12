@@ -276,7 +276,7 @@ div.ui.icon.menu, div.ui.pointing.dropdown.link.item{
 }
 #pricingPage-Header{
   position: relative;
-  right: 86px; 
+  /* right: 10px;  */
   margin: 0px; 
   padding: 0px; 
 
@@ -296,7 +296,7 @@ div.ui.icon.menu, div.ui.pointing.dropdown.link.item{
 }
 #pricingPage-Header-2{
   position: relative;  
-  right: 90px; 
+  /* right: 90px;  */
   margin: 0px;
   margin-top: 10px;  
   /* padding: 0px;  */

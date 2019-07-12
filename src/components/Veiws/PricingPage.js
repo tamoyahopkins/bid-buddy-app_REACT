@@ -185,50 +185,89 @@ class PricingPage extends Component {
           </div>
       </Modal>
   )
+  changeReturnState = () =>{
+    this.setState({
+      Modal: this.state.Modal, 
+      Modal1: this.state.Modal1, 
+      Modal2: this.state.Modal2, 
+      Modal3: this.state.Modal3,
+      pricingInfo: !this.state.pricingInfo,
+      voucherInfo: !this.state.voucherInfo
+    }, ()=> console.log("renderState:", this.state))
+  }
+
+  setReturnState = () => {
+    //add new props to state, check for state, if state A = true, render A, if state B = true, render B
+    this.setState({
+      Modal: this.state.Modal, 
+      Modal1: this.state.Modal1, 
+      Modal2: this.state.Modal2, 
+      Modal3: this.state.Modal3,
+      pricingInfo: true,
+      voucherInfo: false 
+
+    }, ()=> console.log("setNewState:", this.state))
+  }
   
     render(){
       const modal = this.state.Modal ? this.modal : null;
       const modal1 = this.state.Modal1 ? this.modal1 : null; 
       const modal2 = this.state.Modal2 ? this.modal2 : null;
       const modal3 = this.state.Modal3 ? this.modal3 : null; 
-
-      
+      const returnPricingInfo = (<div id="priceFeed-Component">
+      <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
+      <h2 id="lowestPriceDiv">$0</h2>    
+      <h2 id='pricingPage-Header-2'>AVAILABLE AT: </h2>       
+      {/* pricefeed div code below */}
+        <div id="priceFeed-Container">
+          <div id="storeInfoDiv-left"><span>1.</span></div>
+          <div id="storeInfoDiv-middle"><span id="storeName">TJ Maxx </span></div>
+          <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
+          <button onClick={this.showModal} id="storeInfoDiv-right">
+            <img id="bidButtonImage" src={handShake}/> 
+          </button>
+            {modal}
+            {modal1}
+            {modal2}
+            {modal3}
+        </div>
+        <div id="priceFeed-Container">
+          <div id="storeInfoDiv-left"><span>2.</span></div>
+          <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
+          <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+          <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+        </div>
+        <div id="priceFeed-Container">
+        <div id="storeInfoDiv-left"><span>3.</span></div>
+        <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
+        <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+        <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+      </div>
+      </div>)
+      const returnVoucherInfo = (<div id="priceFeed-Component">
+              <div id="priceFeed-Container">
+                <div>IMAGE</div>
+                <div>
+                  <div>Product name: <span>Insert name</span></div>
+                  <div>Actual price: <span>Insert price</span></div>              
+                  <div>Bid price: <span>Insert price</span></div>
+                </div>
+                <button>Get Voucher</button>
+              </div>
+              
+            </div>)
+        
+        
         return(
           <div id="pricingPage-Container">
             <Nav logoutLocation='/userlogin'></Nav>
             <img id='pricingPageLogo'src={logo}/>
-            <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
-            <h2 id="lowestPriceDiv">$0</h2>    
-            <h2 id='pricingPage-Header-2'>AVAILABLE AT: </h2>       
-            {/* pricefeed div code below */}
-            <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left"><span>1.</span></div>
-              <div id="storeInfoDiv-middle"><span id="storeName">TJ Maxx </span></div>
-              <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
-              <button onClick={this.showModal} id="storeInfoDiv-right">
-                <img id="bidButtonImage" src={handShake}/> 
-              </button>
-                {modal}
-                {modal1}
-                {modal2}
-                {modal3}
-            </div>
-            <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left"><span>2.</span></div>
-              <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
-              <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
-              <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
-            </div>
-            <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left"><span>3.</span></div>
-              <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
-              <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
-              <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
-            </div>
-            {/* BidButton code below */}
+            {this.setReturnState}
+            {!this.state.voucherInfo ? returnPricingInfo : returnVoucherInfo}
             
+            {/* BidButton code below */}
             <div id="pricingPageButtons-Container">
-                <button id="goToVouchersButton"><strong>Go To Vouchers</strong></button> 
+                <button onClick={this.changeReturnState}id="goToVouchersButton"><strong>Go To Vouchers</strong></button> 
               <button id="scanNewItemButton" onClick={()=> window.location.href='/'}><strong>Scan another item</strong></button> 
             </div>  
         </div>
@@ -236,6 +275,8 @@ class PricingPage extends Component {
 
 
         )
+
+        
     }
 }
 
