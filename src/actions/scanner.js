@@ -45,24 +45,39 @@ export const processBarcode = (upcNum) => {
   }
 
 export const getUpc = (code) => {
-  if(NaN(code) === true) {
+  if(isNaN(code.text) === true) {
   return dispatch => {
-    let params = code.text;
-    console.log(params)
-  const proxyurl = "https://cors-anywhere.herokuapp.com/"
-  let url = `https://api.upcitemdb.com/prod/trial/lookup?upc=${params}`
-    
+    let itemName = code.text
+    //url info
+    const proxyurl = "https://cors-anywhere.herokuapp.com/"
+    let url = `https://api.datafiniti.co/v4/products/search`
+    //datafinity variables
+    const API_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hZG1pbiI6ZmFsc2UsInN1YiI6IjI2MjEiLCJpc3MiOiJkYXRhZmluaXRpIiwiZW1haWwiOiJ0YW1veWFzaG9wa2luc0BnbWFpbC5jb20ifQ.iGrS5VMMj3rtpaJlXAZxOGrgqHv--63iLQy0NTZAJ5U';
+    const format = 'JSON';
+    const query = `name:${itemName}`
+    const num_records = 1;
+    const download = false;
+
   let req = new Request( proxyurl + url , {
     //hostname: 'api.upcitemdb.com',
-    method: 'GET',
+    method: 'POST',
+    // json: {
+    // "query":  JSON.stringify(query),
+    // "format": JSON.stringify(format),
+    // "num_records": JSON.stringify(num_records),
+    // "download": JSON.stringify(download)
+    // },
+    body: JSON.stringify({
+       query: query,
+       num_records: 1
+    }),
     headers: { 
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    },
-    //mode: 'no-cors'
+      'Authorization': 'Bearer ' + API_token
+      // 'Access-Control-Allow-Origin': '*',
+    }
   })
-  
   let product = null
   fetch(req)
   .catch(err => console.log('error', err))
