@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import './PricingPage.css';
 import 'semantic-ui-css/semantic.min.css'
 // import { Grid, Image, Form, Container } from 'semantic-ui-react'
-import logo from "../../images/bid_buddy_logo_3.png";
-import handShake from "../../images/agreementMetIcon.png"
-import shrug from "../../images/shrugEmoji.jpg"
+import logo from "../images/bid_buddy_logo_3.png";
+import handShake from "../images/agreementMetIcon.png"
+import shrug from "../images/shrugEmoji.jpg"
 
 // import { formatWithOptions } from 'util';
 
