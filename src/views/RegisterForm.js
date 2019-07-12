@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import { registerUser as register } from "../actions/auth"
 import { connect } from "react-redux";
 
@@ -14,7 +14,7 @@ class RegisterForm extends Component {
       if (this.state.password !== this.state.confirmPassword) {
         this.setState({ passwordMatch: false })
       } else {
-        this.props.register({ username: this.state.username, password: this.state.password })
+        this.props.register(this.state)
       }
     }
   
@@ -54,7 +54,7 @@ class RegisterForm extends Component {
         return (
 
         <div className="newUserForm-Container">
-          <Form>
+          <Form onSubmit={handleRegister}>
             <Form.Group>
               <Form.Input 
               placeholder='userame' 
@@ -71,7 +71,7 @@ class RegisterForm extends Component {
             type="password" 
             onChange={this.handleChange} 
             id="password" 
-            autocomplete="new-password" required 
+            autoComplete="new-password" required 
             />    
 
             <Form.Input 
@@ -82,11 +82,10 @@ class RegisterForm extends Component {
             id="passwordCheck" 
             autoComplete="new-password" required
             />
-
             <hr/>
-            <Form.Button onClick={handleRegister}>
+            <Button type="submit">
                 Submit
-            </ Form.Button>
+            </Button>
 
           </Form>
 
@@ -97,8 +96,8 @@ class RegisterForm extends Component {
 
 export default connect(
   ({ auth }) => ({
-    isLoading: auth.loginLoading,
-    err: auth.loginError
+    isLoading: auth.registerLoading,
+    err: auth.registerError
   }),
   { register }
 )(RegisterForm);
