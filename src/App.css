@@ -401,7 +401,7 @@ div.ui.icon.menu, div.ui.pointing.dropdown.link.item{
   border-radius: 5px;
 }
 
-#scanNewItemButton:hover, #goToVouchersButton:hover{
+#scanNewItemButton:hover, #goToVouchersButton:hover, div.ui.icon.menu:hover, div.ui.pointing.dropdown.link.item:hover{
   background-color: darkblue; 
   color: white; 
   
