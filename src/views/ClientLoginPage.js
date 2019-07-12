@@ -1,6 +1,9 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import logo from "../../images/bid_buddy_logo_3.png";
+import logo from "../images/bid_buddy_logo_3.png";
+import { loginThenGoToUserProfile as login } from "../actions/auth"
+import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 
 const LoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -25,7 +28,7 @@ const LoginForm = () => (
         </Segment>
       </Form>
       <Message>
-        New to us? <a href='#'> Sign Up</a>
+        New to us? <Link to={'/register'} className={"registerLink"}>Sign Up</Link>
       </Message>
     </Grid.Column>
   </Grid>

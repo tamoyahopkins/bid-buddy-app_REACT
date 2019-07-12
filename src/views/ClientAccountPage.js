@@ -11,7 +11,7 @@ import {
   Segment,
   Form,
 } from 'semantic-ui-react'
-import logo from "../../images/bid_buddy_logo_3.png";
+import logo from "../images/bid_buddy_logo_3.png";
 
 const GridExampleCelledInternally = () => (
 <React.Fragment>
