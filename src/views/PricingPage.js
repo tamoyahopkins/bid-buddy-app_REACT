@@ -1,16 +1,16 @@
-
 import React, {Component} from 'react'; 
+import { Route } from 'react-router-dom'
 import './PricingPage.css';
 import 'semantic-ui-css/semantic.min.css'
-// import { Grid, Image, Form, Container } from 'semantic-ui-react'
 import logo from "../images/bid_buddy_logo_3.png";
 import handShake from "../images/agreementMetIcon.png"
 import shrug from "../images/shrugEmoji.jpg"
-
-// import { formatWithOptions } from 'util';
-
+import Nav from "./PricingPage_NAV"
+import { link } from 'fs';
 const ReactDOM = require('react-dom'); 
 const modalRoot = document.getElementById('modal-root');
+
+// import { formatWithOptions } from 'util';
 
 class Modal extends Component {
   constructor(props) {
@@ -45,6 +45,7 @@ class PricingPage extends Component {
       Modal3: this.state.Modal3  
      });
   }
+  
   //click confirm Bid button
   handleBid = ()=> {
     let hideModal= !this.state.Modal
@@ -59,7 +60,6 @@ class PricingPage extends Component {
     // this.showCorrectModal()
  
   }
-
   closeModals = () => {
     this.setState({
       Modal: false,
@@ -69,9 +69,7 @@ class PricingPage extends Component {
     })
   }
   closeModal1 = () => {
-    console.log("state before modal button resets state", this)
-    // let closeModal1 = false
-    // let closeModal = !this.state.Modal
+    // console.log("state before modal button resets state", this)
     this.setState({
       Modal: this.state.Modal,
       Modal1: !this.state.Modal1, //false 
@@ -146,6 +144,7 @@ class PricingPage extends Component {
     </div>
   </Modal>
   )
+
   modal1 = (
       <Modal>
         
@@ -161,7 +160,7 @@ class PricingPage extends Component {
          
         </Modal>
     )
-  
+
   modal2 = (
     <Modal>
         <div className="modal">
@@ -185,54 +184,98 @@ class PricingPage extends Component {
           </div>
       </Modal>
   )
+  changeReturnState = () =>{
+    this.setState({
+      Modal: this.state.Modal, 
+      Modal1: this.state.Modal1, 
+      Modal2: this.state.Modal2, 
+      Modal3: this.state.Modal3,
+      pricingInfo: !this.state.pricingInfo,
+      voucherInfo: !this.state.voucherInfo
+    }, ()=> console.log("renderState:", this.state))
+  }
+
+  setReturnState = () => {
+    //add new props to state, check for state, if state A = true, render A, if state B = true, render B
+    this.setState({
+      Modal: this.state.Modal, 
+      Modal1: this.state.Modal1, 
+      Modal2: this.state.Modal2, 
+      Modal3: this.state.Modal3,
+      pricingInfo: true,
+      voucherInfo: false 
+
+    }, ()=> console.log("setNewState:", this.state))
+  }
   
     render(){
       const modal = this.state.Modal ? this.modal : null;
       const modal1 = this.state.Modal1 ? this.modal1 : null; 
       const modal2 = this.state.Modal2 ? this.modal2 : null;
       const modal3 = this.state.Modal3 ? this.modal3 : null; 
-
-      
+      const returnPricingInfo = (<div id="priceFeed-Component">
+      <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
+      <h2 id="lowestPriceDiv">$0</h2>    
+      <h2 id='pricingPage-Header-2'>AVAILABLE AT: </h2>       
+      {/* pricefeed div code below */}
+        <div id="priceFeed-Container">
+          <div id="storeInfoDiv-left"><span>1.</span></div>
+          <div id="storeInfoDiv-middle"><span id="storeName">TJ Maxx </span></div>
+          <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
+          <button onClick={this.showModal} id="storeInfoDiv-right">
+            <img id="bidButtonImage" src={handShake}/> 
+          </button>
+            {modal}
+            {modal1}
+            {modal2}
+            {modal3}
+        </div>
+        <div id="priceFeed-Container">
+          <div id="storeInfoDiv-left"><span>2.</span></div>
+          <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
+          <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+          <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+        </div>
+        <div id="priceFeed-Container">
+        <div id="storeInfoDiv-left"><span>3.</span></div>
+        <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
+        <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+        <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+      </div>
+      </div>)
+      const returnVoucherInfo = (<div id="priceFeed-Component">
+              <div id="priceFeed-Container">
+                <div>IMAGE</div>
+                <div>
+                  <div>Product name: <span>Insert name</span></div>
+                  <div>Actual price: <span>Insert price</span></div>              
+                  <div>Bid price: <span>Insert price</span></div>
+                </div>
+                <button>Get Voucher</button>
+              </div>
+              
+            </div>)
+        
+        
         return(
           <div id="pricingPage-Container">
-            <img id='pricingPageLogo'src={logo}/> 
-            <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
-            <h2 id="lowestPriceDiv">$0</h2>    
-            <h2 id='pricingPage-Header-2'>AVAILABLE AT BELOW STORES: </h2>       
-            {/* pricefeed div code below */}
-            <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left"><span>1.</span></div>
-              <div id="storeInfoDiv-middle"><span id="storeName">TJ Maxx </span></div>
-              <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
-              <button onClick={this.showModal} id="storeInfoDiv-right">
-                <img id="bidButtonImage" src={handShake}/> 
-              </button>
-                {modal}
-                {modal1}
-                {modal2}
-                {modal3}
-            </div>
-            <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left"><span>2.</span></div>
-              <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
-              <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
-              <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
-            </div>
-            <div id="priceFeed-Container">
-              <div id="storeInfoDiv-left"><span>3.</span></div>
-              <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
-              <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
-              <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
-            </div>
-            {/* BidButton code below */}
+            <Nav logoutLocation='/userlogin'></Nav>
+            <img id='pricingPageLogo'src={logo}/>
+            {this.setReturnState}
+            {!this.state.voucherInfo ? returnPricingInfo : returnVoucherInfo}
             
-
-            <button id="scanNewItemButton"><strong>Scan another item</strong></button>    
+            {/* BidButton code below */}
+            <div id="pricingPageButtons-Container">
+                <button onClick={this.changeReturnState}id="goToVouchersButton"><strong>Go To Vouchers</strong></button> 
+              <button id="scanNewItemButton" onClick={()=> window.location.href='/'}><strong>Scan another item</strong></button> 
+            </div>  
         </div>
 
 
 
         )
+
+        
     }
 }
 

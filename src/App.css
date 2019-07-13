@@ -242,6 +242,7 @@ a {
 
 /* -------END: styling for client login page ------------ */
 /* -------START: styling for pricing page ------------ */
+
 #pricingPage-Container{
   display:flex; 
   flex-direction: column; 
@@ -250,13 +251,32 @@ a {
   height: auto; 
   overflow: hidden;
 }
+div.ui.icon.menu, div.ui.pointing.dropdown.link.item{
+  position: relative; 
+  top: 40px; 
+  left: 150px; 
+  background-color: #D7A124;
+  width: 40px; 
+  height: 40px; 
+  padding-bottom: 6px; 
+  padding-left: 2px; 
+  border-radius: 5px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+
+
+
 #pricingPageLogo{
   width: 300px; 
   margin-bottom: -50px; 
+  margin-top: -30px;
 }
 #pricingPage-Header{
   position: relative;
-  right: 86px; 
+  /* right: 10px;  */
   margin: 0px; 
   padding: 0px; 
 
@@ -275,9 +295,12 @@ a {
   border-radius: 5px; 
 }
 #pricingPage-Header-2{
-  margin: 0px; 
+  position: relative;  
+  /* right: 90px;  */
+  margin: 0px;
+  margin-top: 10px;  
+  /* padding: 0px;  */
   /* margin-bottom: 5px;  */
-  padding: 0px; 
   
 }
 #priceFeed-Container{
@@ -351,19 +374,34 @@ a {
   /* border-radius: 10%; */
 }
 
-#scanNewItemButton{
-  width: 200px;
-  margin-top: 50px; 
-  background-color: #D7A124; 
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
-  font-size: 20px; 
-  cursor: pointer;
-  border: none; 
-  border-radius: 5%;
-  
+#pricingPageButtons-Container{
+  display: flex; 
+  flex-direction: row; 
+  width: 365px; 
+  margin-top: 30px; 
+  justify-content: space-between;
+
 }
 
-#scanNewItemButton:hover{
+#scanNewItemButton{
+  width: 175px;
+  background-color: #D7A124; 
+  font-size: 18px; 
+  cursor: pointer;
+  border: none; 
+  border-radius: 5px;
+  
+}
+#goToVouchersButton{
+  width: 175px;
+  background-color: #D7A124; 
+  font-size: 18px; 
+  cursor: pointer;
+  border: none; 
+  border-radius: 5px;
+}
+
+#scanNewItemButton:hover, #goToVouchersButton:hover, div.ui.icon.menu:hover, div.ui.pointing.dropdown.link.item:hover{
   background-color: darkblue; 
   color: white; 
   
