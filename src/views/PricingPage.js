@@ -184,6 +184,23 @@ class PricingPage extends Component {
           </div>
       </Modal>
   )
+
+  modal4 = (
+  <Modal>
+          <div className="modal">
+            <h2>BID ACCEPTED</h2>
+              <h3>Please scan the below voucher at the check-out register to apply the discount. Note: this voucher is viewable in your account page. 
+              </h3>
+              <div>Product Name: <span>Insert Product Name</span></div>
+            <div id="sampleCoupon">
+              <img src="https://internationalbarcodes.com/wp-content/uploads/sites/95/2013/11/SSCC-Pallet-Barcode.jpg"/>
+            </div>
+            <button>Go Back</button>
+          </div>
+         
+        </Modal>
+)
+
   changeReturnState = () =>{
     this.setState({
       Modal: this.state.Modal, 
@@ -203,7 +220,8 @@ class PricingPage extends Component {
       Modal2: this.state.Modal2, 
       Modal3: this.state.Modal3,
       pricingInfo: true,
-      voucherInfo: false 
+      voucherInfo: false,
+      voucherDetails: false 
 
     }, ()=> console.log("setNewState:", this.state))
   }
@@ -244,14 +262,14 @@ class PricingPage extends Component {
       </div>
       </div>)
       const returnVoucherInfo = (<div id="priceFeed-Component">
-              <div id="priceFeed-Container">
-                <div>IMAGE</div>
-                <div>
-                  <div>Product name: <span>Insert name</span></div>
-                  <div>Actual price: <span>Insert price</span></div>              
-                  <div>Bid price: <span>Insert price</span></div>
+              <div className="voucherDiv-Container">
+                <img className="voucherDiv-image-left" src={logo}/>
+                <div className="voucherDiv-info-middle">
+                  <div><strong>Product name:</strong> <span>Insert product name</span></div>
+                  <div><strong>Bid price: </strong><span>Insert price</span></div>
+                  <div><strong>Actual price: </strong><span>Insert price</span></div>              
                 </div>
-                <button>Get Voucher</button>
+                <button className="voucherDiv-button-right" onClick={this.showVoucherDetails}>Get Voucher</button>
               </div>
               
             </div>)
@@ -263,6 +281,7 @@ class PricingPage extends Component {
             <img id='pricingPageLogo'src={logo}/>
             {this.setReturnState}
             {!this.state.voucherInfo ? returnPricingInfo : returnVoucherInfo}
+            {this.state.voucherDetails ? this.showVoucherDetails : null}
             
             {/* BidButton code below */}
             <div id="pricingPageButtons-Container">
