@@ -114,6 +114,32 @@ class PricingPage extends Component {
       // console.log("picked showModal2", this.state)
     }
   }
+  changeReturnState = () =>{
+    this.setState({
+      Modal: this.state.Modal, 
+      Modal1: this.state.Modal1, 
+      Modal2: this.state.Modal2, 
+      Modal3: this.state.Modal3,
+      pricingInfo: !this.state.pricingInfo,
+      voucherInfo: !this.state.voucherInfo, 
+      voucherDetails: false,
+    }, ()=> console.log("hit see Vouchers Button", this.state))
+
+    if (!this.state.pricingInfo) {document.getElementById("goToVouchersButton").innerHTML = "Go Back"}
+    else {document.getElementById("goToVouchersButton").innerHTML = "Go To Vouchers"}
+  }
+  
+  changeVoucherDetailsState = () => {
+    this.setState({
+      Modal: this.state.Modal, 
+      Modal1: this.state.Modal1, 
+      Modal2: this.state.Modal2, 
+      Modal3: this.state.Modal3,
+      pricingInfo: this.state.pricingInfo,
+      voucherInfo: this.state.pricingInfo,
+      voucherDetails: !this.state.voucherDetails,
+  }, ()=> console.log("setState after Voucher details state change:", this.state))
+}
 
   modal = (
     <Modal>
@@ -192,40 +218,18 @@ class PricingPage extends Component {
               <h3>Please scan the below voucher at the check-out register to apply the discount. Note: this voucher is viewable in your account page. 
               </h3>
               <div>Product Name: <span>Insert Product Name</span></div>
+              <div>Bid Amount Accepted: <span>Insert Bid Amount</span></div>
+            <br></br>
             <div id="sampleCoupon">
               <img src="https://internationalbarcodes.com/wp-content/uploads/sites/95/2013/11/SSCC-Pallet-Barcode.jpg"/>
             </div>
-            <button>Go Back</button>
+            <button onClick={this.changeVoucherDetailsState}>Go Back</button>
           </div>
          
         </Modal>
 )
-
-  changeReturnState = () =>{
-    this.setState({
-      Modal: this.state.Modal, 
-      Modal1: this.state.Modal1, 
-      Modal2: this.state.Modal2, 
-      Modal3: this.state.Modal3,
-      pricingInfo: !this.state.pricingInfo,
-      voucherInfo: !this.state.voucherInfo
-    }, ()=> console.log("renderState:", this.state))
-  }
-
-  setReturnState = () => {
-    //add new props to state, check for state, if state A = true, render A, if state B = true, render B
-    this.setState({
-      Modal: this.state.Modal, 
-      Modal1: this.state.Modal1, 
-      Modal2: this.state.Modal2, 
-      Modal3: this.state.Modal3,
-      pricingInfo: true,
-      voucherInfo: false,
-      voucherDetails: false 
-
-    }, ()=> console.log("setNewState:", this.state))
-  }
   
+
     render(){
       const modal = this.state.Modal ? this.modal : null;
       const modal1 = this.state.Modal1 ? this.modal1 : null; 
@@ -269,7 +273,7 @@ class PricingPage extends Component {
                   <div><strong>Bid price: </strong><span>Insert price</span></div>
                   <div><strong>Actual price: </strong><span>Insert price</span></div>              
                 </div>
-                <button className="voucherDiv-button-right" onClick={this.showVoucherDetails}>Get Voucher</button>
+                <button className="voucherDiv-button-right" onClick={this.changeVoucherDetailsState}>Get Voucher</button>
               </div>
               
             </div>)
@@ -279,9 +283,9 @@ class PricingPage extends Component {
           <div id="pricingPage-Container">
             <Nav logoutLocation='/userlogin'></Nav>
             <img id='pricingPageLogo'src={logo}/>
-            {this.setReturnState}
+           
             {!this.state.voucherInfo ? returnPricingInfo : returnVoucherInfo}
-            {this.state.voucherDetails ? this.showVoucherDetails : null}
+            {!this.state.voucherDetails ? null : this.modal4}
             
             {/* BidButton code below */}
             <div id="pricingPageButtons-Container">

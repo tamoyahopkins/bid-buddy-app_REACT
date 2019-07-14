@@ -480,6 +480,7 @@ top: -15px;
 }
 .modal > h2, .modal > h3, .modal > h1 {
   align-self: center; 
+  
 }
 /* ------stop: Modal css------ */
 
@@ -507,7 +508,7 @@ top: -15px;
 .voucherDiv-info-middle{
   width: 213.75px; 
   font-family: 'Franklin Gothic Medium';
-  font-size: 15px; 
+  font-size: 12px; 
 }
 
 .voucherDiv-button-right{
