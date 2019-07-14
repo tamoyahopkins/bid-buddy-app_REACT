@@ -480,10 +480,44 @@ top: -15px;
 }
 .modal > h2, .modal > h3, .modal > h1 {
   align-self: center; 
+  
+}
+/* ------stop: Modal css------ */
+
+/* ------start: voucherfeed div----- */
+.voucherDiv-Container{
+  display: flex; 
+  flex-direction: row; 
+  /* justify-content: space-evenly; */
+  width: 365px;
+  height: 60px;  
+  background-color: rgb(250, 236, 202);
+  /* max-width: 100%; */
+  overflow: auto;
+  padding: 5px; 
+  margin: 0px; 
+  /* border-radius: 10%; */
 }
 
+.voucherDiv-image-left{
+  width: 91.25px; 
+  align-self: center;
+  max-height: 60px; 
+}
 
+.voucherDiv-info-middle{
+  width: 213.75px; 
+  font-family: 'Franklin Gothic Medium';
+  font-size: 12px; 
+}
 
+.voucherDiv-button-right{
+  width: 60px; 
+  font-size: 12px; 
+  border-radius: 10px; 
+  background-color: darkblue;
+  color: white; 
+}
 
 
 
