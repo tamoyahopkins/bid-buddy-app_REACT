@@ -1,11 +1,11 @@
-import React, { Component } from "./node_modules/react";
-import { Form } from "./node_modules/semantic-ui-react";
+import React, { Component } from "react";
+import { Form } from "semantic-ui-react";
 import { createUserAction as createUser } from "../../../actions/users"
-import { connect } from "./node_modules/react-redux";
+import { connect } from "react-redux";
 
-class NewUserForm extends Component {
+class sellerNewUserForm extends Component {
     state = {
-        username: "",
+
         displayName: "",
         password: "",
     };
@@ -23,10 +23,10 @@ class NewUserForm extends Component {
       .then(this.props.setValidity(true))
       .catch(er=>{
         this.props.setValidity(false)
-        document.getElementById("username").setCustomValidity("Username already Taken")
+        document.getElementById("").setCustomValidity(" already Taken")
         target.reportValidity()
         setTimeout(() => {
-          document.getElementById("username").setCustomValidity("")
+          document.getElementById("").setCustomValidity("")
         }, 1000);
       })
     }
@@ -41,11 +41,12 @@ class NewUserForm extends Component {
           <Form onSubmit={this.handleSubmit}>
               <h1>We are happy to add you as a secret squirrel!</h1>
             <Form.Group>
-              <Form.Input placeholder='username' name='username' type="text" onChange={this.handleChange} id="username" required />
+              <Form.Input placeholder='Company/Seller Name' name='sellerName' type="text" onChange={this.handleChange} id="sellerName" required />
             </Form.Group>
-            <Form.Input placeholder='Display Name' name='displayName'  type="text" onChange={this.handleChange} required />
+
             <Form.Input placeholder='Enter new password' name='password' type="password" onChange={this.handleChange} id="password" autocomplete="new-password" required />              
             <Form.Input placeholder='Confirm Password' name='passwordCheck' type="password" onInput={this.verifyPassword} id="passwordCheck" autocomplete="new-password" required />
+            
             <hr/>
             <Form.Button content='Submit' />
           </Form>
@@ -61,6 +62,4 @@ export default connect(
     err: users.usersError
   }),
   { createUser }
-)(NewUserForm);
-
-//test
+)(sellerNewUserForm);

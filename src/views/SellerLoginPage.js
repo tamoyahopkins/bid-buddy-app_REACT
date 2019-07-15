@@ -25,12 +25,13 @@ const LoginForm = () => (
         </Segment>
       </Form>
       <Message>
-        New to us? <a href='#'>Sign Up</a>
+        New to us? <button href='#'>Sign Up</button>
       </Message>
+      <Message>
+        Are you a Client? <button href='#'>Login as Client</button>
+        </Message>
     </Grid.Column>
   </Grid>
 )
 
 export default LoginForm
-
-//test
