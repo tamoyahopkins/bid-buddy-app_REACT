@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import logo from "../../images/bid_buddy_logo_3.png";
+import logo from "../images/bid_buddy_logo_3.png";
 
 const userLoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -19,7 +19,7 @@ const userLoginForm = () => (
             type='password'
           />
 
-          <Button color='teal' fluid size='large'>
+          <Button onClick={()=> window.location.href='/scanitem'} color='teal' fluid size='large'>
             Login
           </Button>
         </Segment>

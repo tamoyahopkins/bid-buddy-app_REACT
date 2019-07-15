@@ -7,6 +7,7 @@ import PricingPage from "./views/PricingPage";
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import RegisterForm from "./views/RegisterForm"
+import UserLogin from "./views/userLoginPage"
 
 // import { AuthPage } from "../../../capstone-front/src/components";
 
@@ -15,7 +16,8 @@ class App extends Component {
     
     return (
       <Switch>
-        <Route exact path="/" render={() => <Home />} />
+        <Route exact path="/" render={() => <UserLogin />} />
+        <Route exact path="/scanitem" render={() => <Home />} />
         <Route exact path="/clientlogin" render={() => <ClientLogin/>} />
         <Route exact path="/clientaccount" render={() => <ClientAccount/>} />
         <Route exact path="/pricingpage" render={() => <PricingPage/>} />

@@ -22,7 +22,7 @@ const LoginForm = () => (
             type='password'
           />
 
-          <Button color='teal' fluid size='large'>
+          <Button onClick={()=> window.location.href='/scanitem'} color='teal' fluid size='large'>
             Login
           </Button>
         </Segment>
