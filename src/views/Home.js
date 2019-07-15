@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Scanner from "../components/Scanner"
-import { getUpc } from "../actions/scanner"
+import { scanThenGoToBidPage, getUpc } from "../actions/scanner"
 import logo from "../images/bid_buddy_logo_3.png";
 import 'semantic-ui-css/semantic.min.css'
 import Product from "../components/Product"
@@ -36,9 +36,9 @@ class Home extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.process({ text: this.state.text })
-    this.setState({ text: "" })
+    this.setState({ text: "" }, () => window.location.href="/pricingpage")
+   
     document.getElementById("scanPageInput").value = "";
-    console.log("test")
   };
 
 
@@ -57,22 +57,23 @@ class Home extends Component {
             type="text" 
             placeholder="Insert product name or UPC number"
             onChange={this.handleChange}
-            />     
-          </div>
+            />
           <Button
+          style={{display: "flex"}}
           onClick = {this.handleSubmit}
-          ></Button>
+          ></Button>     
+          </div>
+          
           
           <div id="scannerDiv">
             <Scanner onBarcodeDetect={this.onBarcodeDetect} />
           </div>
-          <Product
-          item={this.props.productScanned} />
+          {/* <Product
+          item={this.props.productScanned} /> */}
         </div>
       ) 
     }
 }
-
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -87,7 +88,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
       process: (barcode) => { dispatch(getUpc(barcode)) }
     }
-  }
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 //test

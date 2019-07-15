@@ -37,33 +37,35 @@ const login = loginData => dispatch => {
     });
 };
 
-const logout = loginData => dispatch => {
-  dispatch({
-    type: LOGOUT
-  });
-
-  return fetch(url + "/logout", {
-    headers: {
-      Authorization: `Bearer ${loginData.token}`
-    }
-  })
-    .then(handleJsonResponse)
-    .then(result => {
-      return dispatch({
-        type: LOGOUT_SUCCESS,
-        payload: result
-      });
-    })
-    .catch(err => {
-      return Promise.reject(
-        dispatch({ type: LOGOUT_FAIL, payload: err.message })
-      );
-    });
-}
 
 export const loginThenGoToUserProfile = loginData => dispatch => {
   return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
 };
+
+
+const logout = loginData => dispatch => {
+  dispatch({
+    type: LOGOUT
+  });
+      
+    return fetch(url + "/logout", {
+          headers: {
+            Authorization: `Bearer ${loginData.token}`
+          }
+        })
+          .then(handleJsonResponse)
+          .then(result => {
+            return dispatch({
+              type: LOGOUT_SUCCESS,
+              payload: result
+            });
+          })
+          .catch(err => {
+            return Promise.reject(
+              dispatch({ type: LOGOUT_FAIL, payload: err.message })
+            );
+          });
+      }
 
 export const logoutLoggedInUser = loginData => dispatch => {
   return dispatch(logout(loginData))
@@ -104,4 +106,6 @@ export const registerUser = registerData => dispatch => {
   return dispatch(register(registerData))
   .then(() => dispatch(login({password:registerData.password,username:registerData.username})))
   .then(() => dispatch(push("/clientAccoutPage")))
-};
+}
+
+
