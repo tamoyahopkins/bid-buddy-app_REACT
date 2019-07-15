@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Modal, Header, Form, Button } from "semantic-ui-react";
 import { registerUser as register } from "../actions/auth"
 import { connect } from "react-redux";
+import logo from "../images/bid_buddy_logo_3.png";
+
 
 class RegisterForm extends Component {
     state = {
@@ -16,6 +18,7 @@ class RegisterForm extends Component {
       } else {
         this.props.register(this.state)
       }
+      window.location.href='/scanitem'
     }
   
     handleChange = e => {
@@ -52,44 +55,50 @@ class RegisterForm extends Component {
         const { isLoading, err } = this.props;
     
         return (
+          <Modal trigger={<a>Sign Up</a>} basic size='small'>
+            <Header as='h1' content='Sign up for your very own Bid Buddy account!' />
+            <Form onSubmit={handleRegister}>
+              <Form.Group>
+                <Form.Input 
+                placeholder='User Name' 
+                name='username' 
+                type="text" 
+                onChange={this.handleChange} 
+                id="sellerName" required 
+                />
+                <Form.Input 
+                placeholder='Email' 
+                name='email' 
+                type="text" 
+                onChange={this.handleChange} 
+                id="sellerEmail" required 
+                />
+              </Form.Group>
 
-        <div className="newUserForm-Container">
-          <Form onSubmit={handleRegister}>
-            <Form.Group>
               <Form.Input 
-              placeholder='userame' 
-              name='username' 
-              type="text" 
+              placeholder='Enter new password' 
+              name='password' 
+              type="password" 
               onChange={this.handleChange} 
-              id="sellerName" required 
+              id="password" 
+              autoComplete="new-password" required 
+              />    
+
+              <Form.Input 
+              placeholder='Confirm Password' 
+              name='passwordCheck' 
+              type="password" 
+            
+              id="passwordCheck" 
+              autoComplete="new-password" required
               />
-            </Form.Group>
+              <hr/>
+              <Button type="submit">
+                  Submit
+              </Button>
 
-            <Form.Input 
-            placeholder='Enter new password' 
-            name='password' 
-            type="password" 
-            onChange={this.handleChange} 
-            id="password" 
-            autoComplete="new-password" required 
-            />    
-
-            <Form.Input 
-            placeholder='Confirm Password' 
-            name='passwordCheck' 
-            type="password" 
-          
-            id="passwordCheck" 
-            autoComplete="new-password" required
-            />
-            <hr/>
-            <Button type="submit">
-                Submit
-            </Button>
-
-          </Form>
-
-        </div>
+            </Form>
+          </Modal>
         )
       }
 }

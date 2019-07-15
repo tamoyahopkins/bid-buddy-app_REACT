@@ -4,6 +4,7 @@ import logo from "../images/bid_buddy_logo_3.png";
 import { loginThenGoToUserProfile as login } from "../actions/auth"
 import { connect } from "react-redux";
 import { Link } from "react-router-dom"
+import RegisterForm from './RegisterForm'
 
 const LoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -28,7 +29,7 @@ const LoginForm = () => (
         </Segment>
       </Form>
       <Message>
-        New to us? <Link to={'/register'} className={"registerLink"}>Sign Up</Link>
+        New to us? {<RegisterForm/>}
       </Message>
     </Grid.Column>
   </Grid>
