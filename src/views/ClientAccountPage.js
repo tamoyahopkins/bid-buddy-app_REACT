@@ -41,7 +41,7 @@ let handleSubmit = () => {
 
 
 const addButton = () => 
-      (<Modal trigger={<Button color='dark blue'>+</Button>} closeIcon>
+      (<Modal trigger={<Segment textAlign='center'><Button color='dark blue' primary>ADD BID THRESHOLDS</Button></Segment>} closeIcon>
     <Grid rows={2}>
         <Grid.Row><Header as='h2' icon='hand point up' content='Accept bids automatically by setting custom thresholds below.' /></Grid.Row>
         <Grid.Row><Header as='h4'>Set threshold by category</Header></Grid.Row>
@@ -82,6 +82,44 @@ const addButton = () =>
   </Modal>
 )
 
+const productDashboardSummary = () => (
+    <Segment>
+        <Header as='h3'>Summary</Header>
+        <Grid columns={2}>
+            <Grid.Column>
+                <Grid.Row>Total #of bids</Grid.Row>
+                <Grid.Row>Total #of pending bids</Grid.Row>
+            </Grid.Column>
+            <Grid.Column>
+                <Grid.Row>0</Grid.Row>
+                <Grid.Row>0</Grid.Row>
+            </Grid.Column>
+        </Grid>
+        <Divider></Divider>
+        <Grid columns={3}>
+            <Grid.Column>
+                <Grid.Row> Total Declined </Grid.Row>
+                <Grid.Row>0</Grid.Row>
+                <Grid.Row>Total Accepted </Grid.Row>
+                <Grid.Row>0</Grid.Row>
+            </Grid.Column>
+            <Grid.Column>
+                <Grid.Row>Listed value &#40;$&#41; </Grid.Row>
+                <Grid.Row>0</Grid.Row>
+                <Grid.Row>Listed value &#40;$&#41; </Grid.Row>
+                <Grid.Row>0</Grid.Row>
+            </Grid.Column>
+            <Grid.Column>
+                <Grid.Row>Variance &#40;+&#47;-&#41; </Grid.Row>
+                <Grid.Row>0</Grid.Row>
+                <Grid.Row>Variance &#40;+&#47;-&#41; </Grid.Row>
+                <Grid.Row>0</Grid.Row>
+
+            </Grid.Column>
+    </Grid>
+ </Segment>
+)
+
 const GridExampleCelledInternally = () => (
 <React.Fragment>
     <div id="clientAccount-Container">
@@ -102,32 +140,30 @@ const GridExampleCelledInternally = () => (
         {/* feed container div */}
         <div id="feedContainer">
             <div id="leftCol">
-                <div className="productDash">
-                    Product Dash
-                    <br></br>
-                    <br></br>
-                    {addButton()}      
-                </div>
-                <div className="header-text">
+                <Header as='h1'>Product Dashboard</Header>
+                {productDashboardSummary()}
+                {addButton()}      
+                {/* <div className="header-text">
                     Catagory
-                    {/* <button class="dash-button">+</button> */}
+                    
                 </div>
                 <div className="header-text">
                     Brand
-                    {/* <button class="dash-button">+</button> */}
+                    
                 </div>
                 <div className="header-text">
                     Volume
-                    {/* <button class="dash-button">+</button> */}
+                    
                 </div>
                 <div className="header-text">
                     Age
-                    {/* <button class="dash-button">+</button> */}
+                    
                 </div>
                 <div className="header-text">
                     Item Number (UPC)
-                    {/* <button class="dash-button">+</button> */}
+                    
                 </div>
+             */}
 
             </div>
             <div id="rightCol">
