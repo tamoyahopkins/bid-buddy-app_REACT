@@ -1,6 +1,4 @@
-import { push } from "connected-react-router"
-
-
+import {push} from 'connected-react-router'
 export const processBarcode = (upcNum) => {
   return dispatch => {
  // let url = URL_PATH + barcode + URL_EXTENSION + APIKEY
@@ -27,6 +25,9 @@ export const processBarcode = (upcNum) => {
       }
     })
     .then(parsedRes => {
+      if(parsedRes.resStatus !== 200){
+        parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
+      } else {
         product = {
           barcode_number: parsedRes.products[0].barcode_number,
           barcode_type: parsedRes.products[0].barcode_type,
@@ -38,11 +39,10 @@ export const processBarcode = (upcNum) => {
           description: parsedRes.products[0].description,
         }
         dispatch(productDetected(product))
-      }) 
+      } 
+    })
   }
   }
-
-///////////////////////////////////////////
 
 export const getUpc = (code) => {
   if(isNaN(code.text) === true) {
@@ -61,12 +61,12 @@ export const getUpc = (code) => {
   let req = new Request( proxyurl + url , {
     //hostname: 'api.upcitemdb.com',
     method: 'POST',
-    json: JSON.stringify({
-    "query":  query,
-    "format": format,
-    "num_records": num_records,
-    "download": download
-    }),
+    // json: {
+    // "query":  JSON.stringify(query),
+    // "format": JSON.stringify(format),
+    // "num_records": JSON.stringify(num_records),
+    // "download": JSON.stringify(download)
+    // },
     body: JSON.stringify({
        query: query,
        num_records: 1
@@ -79,7 +79,6 @@ export const getUpc = (code) => {
     }
   })
   let product = null
-  
   fetch(req)
   .catch(err => console.log('error', err))
   .then(res => {
@@ -91,16 +90,20 @@ export const getUpc = (code) => {
     } else if(res.status === 200) {
       // console.log(res)
       return res.json()
+      
     }
   })
   .then(parsedRes => {
     console.log(parsedRes)
+    if(parsedRes.resStatus !== 200){
+      parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
+    } else {
       product = parsedRes
       dispatch(productDetected(product))
-      // dispatch(scanThenGoToBidPage("/pricingpage"))
+    }
   })
-}
-}else {
+  }
+} else {
     return dispatch => {
       let params = code.text;
       console.log(params)
@@ -135,12 +138,12 @@ export const getUpc = (code) => {
     })
     .then(parsedRes => {
       console.log(parsedRes)
-      if(parsedRes.resStatus !== 200){
+      if(parsedRes.code !== "OK"){
         parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
       } else {
         product = parsedRes
         dispatch(productDetected(product))
-        // dispatch(scanThenGoToBidPage("/pricingpage"))
+        dispatch(push('/pricingpage'))
       }
     })
     }
@@ -153,12 +156,8 @@ export const productDetected = (product) => {
     type: 'PRODUCT_DETECTED',
     payload: product
   }
+  
 }
-
-// export const scanThenGoToBidPage = Data => dispatch => {
-//   return dispatch(getUpc(Data)).then(() => dispatch(push("/pricingpage")));
-// }
-//this is the right function to return to the page
 
 export const invalidBarcode = (err) => {
   let errText = err === 'noAPI' ? 'NO_API_KEY' : 'INVALID_BARCODE'
@@ -166,4 +165,3 @@ export const invalidBarcode = (err) => {
     type: errText,
   }
 }
-//test
