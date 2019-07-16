@@ -143,31 +143,9 @@ const GridExampleCelledInternally = () => (
                 <Header as='h1'>Product Dashboard</Header>
                 {productDashboardSummary()}
                 {addButton()}      
-                {/* <div className="header-text">
-                    Catagory
-                    
-                </div>
-                <div className="header-text">
-                    Brand
-                    
-                </div>
-                <div className="header-text">
-                    Volume
-                    
-                </div>
-                <div className="header-text">
-                    Age
-                    
-                </div>
-                <div className="header-text">
-                    Item Number (UPC)
-                    
-                </div>
-             */}
-
             </div>
             <div id="rightCol">
-                {/* BID CARD: will append to the page */}
+            {/* ----REMOVE BELOW CODE AND ADD BID CARD: COMPONENT------*/}
                 <div id="bidCard-Container">
                     <img id="bidCard-section-left" class="bidCard-section" src="http://s7d4.scene7.com/is/image/BonTon/1366594?$ibm_large$"></img>
                     <div id="bidCard-section-middle" class="bidCard-section">

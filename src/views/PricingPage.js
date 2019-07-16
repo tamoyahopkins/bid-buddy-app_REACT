@@ -41,7 +41,6 @@ class PricingPage extends Component {
   // }
   
   showModal = ()=> {
-    // let showModal = !this.state.Modal
     this.setState({
       Modal: true,
       Modal1: this.state.Modal1, 
@@ -312,7 +311,9 @@ class PricingPage extends Component {
         <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
       </div>
       </div>)
-      const returnVoucherInfo = (<div id="priceFeed-Component">
+      const returnVoucherInfo = (
+        // REMOVE BELOW CODE AND ADD VOUCHERFEED COMPONENT
+            <div id="priceFeed-Component">
               <div className="voucherDiv-Container">
                 <img className="voucherDiv-image-left" src={logo}/>
                 <div className="voucherDiv-info-middle">
@@ -322,7 +323,6 @@ class PricingPage extends Component {
                 </div>
                 <button className="voucherDiv-button-right" onClick={this.changeVoucherDetailsState}>Get Voucher</button>
               </div>
-              
             </div>)
 
         
@@ -337,7 +337,7 @@ class PricingPage extends Component {
             {/* BidButton code below */}
             <div id="pricingPageButtons-Container">
                 <button onClick={this.changeReturnState}id="goToVouchersButton"><strong>Go To Vouchers</strong></button> 
-              <button id="scanNewItemButton" onClick={()=> window.location.href='/'}><strong>Scan another item</strong></button> 
+              <button id="scanNewItemButton" onClick={()=> window.location.href='/scanitem'}><strong>Scan another item</strong></button> 
             </div>  
         </div>
 
