@@ -12,4 +12,4 @@ export default history =>
     user
   });
 
-  //test
+ 

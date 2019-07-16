@@ -18,12 +18,12 @@ const initialState = {
       case 'PRODUCT_DETECTED':
         return {
           ...state,
-          productScanned: action.payload,
+          productScanned: action.payload.items[0],
           invalidBarcode: false,
           noApi: false,
           spinner: false,
           startScanning: false,
-          scannedItems: [...state.scannedItems, action.payload]
+          scannedItems: [...state.scannedItems, action.payload.items[0]]
         }
       case 'INVALID_BARCODE':
         return {
@@ -67,4 +67,4 @@ const initialState = {
   
   export default scannedItems
 
-  //test
+ 

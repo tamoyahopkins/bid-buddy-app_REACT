@@ -1,4 +1,4 @@
-
+import {push} from 'connected-react-router'
 export const processBarcode = (upcNum) => {
   return dispatch => {
  // let url = URL_PATH + barcode + URL_EXTENSION + APIKEY
@@ -103,7 +103,7 @@ export const getUpc = (code) => {
     }
   })
   }
-}else {
+} else {
     return dispatch => {
       let params = code.text;
       console.log(params)
@@ -138,11 +138,12 @@ export const getUpc = (code) => {
     })
     .then(parsedRes => {
       console.log(parsedRes)
-      if(parsedRes.resStatus !== 200){
+      if(parsedRes.code !== "OK"){
         parsedRes.resStatus === 0 ? dispatch(invalidBarcode('noAPI')) : dispatch(invalidBarcode('invalid'))
       } else {
         product = parsedRes
         dispatch(productDetected(product))
+        dispatch(push('/pricingpage'))
       }
     })
     }
@@ -155,6 +156,7 @@ export const productDetected = (product) => {
     type: 'PRODUCT_DETECTED',
     payload: product
   }
+  
 }
 
 export const invalidBarcode = (err) => {
@@ -163,4 +165,3 @@ export const invalidBarcode = (err) => {
     type: errText,
   }
 }
-//test

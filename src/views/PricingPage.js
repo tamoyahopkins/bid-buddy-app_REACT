@@ -7,9 +7,9 @@ import handShake from "../images/agreementMetIcon.png"
 import shrug from "../images/shrugEmoji.jpg"
 import Nav from "./PricingPage_NAV"
 import { link } from 'fs';
+import { connect } from 'react-redux'
 const ReactDOM = require('react-dom'); 
 const modalRoot = document.getElementById('modal-root');
-
 // import { formatWithOptions } from 'util';
 
 class Modal extends Component {
@@ -36,6 +36,10 @@ class PricingPage extends Component {
       Modal3: false
     };
   
+  // componentDidMount() {
+  //   this.props.productScanned({});
+  // }
+  
   showModal = ()=> {
     // let showModal = !this.state.Modal
     this.setState({
@@ -45,7 +49,6 @@ class PricingPage extends Component {
       Modal3: this.state.Modal3  
      });
   }
-  
   //click confirm Bid button
   handleBid = ()=> {
     let hideModal= !this.state.Modal
@@ -78,6 +81,7 @@ class PricingPage extends Component {
     },()=> console.log("closing modal 1", this.state)); 
     // console.log("closing modal 1", this.state)
   }
+  //modal rendered based on random number 
   showCorrectModal = () => {
     console.log("state passed to Modal1", this.state)
     let randomNumber = Math.floor(Math.random()*10)
@@ -114,6 +118,7 @@ class PricingPage extends Component {
       // console.log("picked showModal2", this.state)
     }
   }
+  //sets voucher state, renders component based on button click, changes button innerText
   changeReturnState = () =>{
     this.setState({
       Modal: this.state.Modal, 
@@ -128,7 +133,7 @@ class PricingPage extends Component {
     if (!this.state.pricingInfo) {document.getElementById("goToVouchersButton").innerHTML = "Go Back"}
     else {document.getElementById("goToVouchersButton").innerHTML = "Go To Vouchers"}
   }
-  
+  //changes voucher state to opposite
   changeVoucherDetailsState = () => {
     this.setState({
       Modal: this.state.Modal, 
@@ -139,7 +144,46 @@ class PricingPage extends Component {
       voucherInfo: this.state.pricingInfo,
       voucherDetails: !this.state.voucherDetails,
   }, ()=> console.log("setState after Voucher details state change:", this.state))
-}
+  }
+  
+  // getLowestPrice = () => {
+  //   let priceArr = []
+  //   let postPrices = []
+  //   let finalPrices = []
+  //   let newPriceArr = []
+  //   this.props.productScanned.forEach(offer => priceArr.push(offer.price))
+  //   priceArr.sort((a, b) => a - b)
+  //   //  console.log('priceArr', priceArr)
+  //   for (let i = 0; i < priceArr.length; i++){
+  //     if (priceArr[i]!== priceArr[i+1]){newPriceArr.push(priceArr[i])}
+  //   }
+  //   //  console.log("newPriceArr",newPriceArr)
+
+  //   this.props.productScanned.map(item => {
+  //     // let index = 0; 
+  //     newPriceArr.map(index => {
+  //       if (item.price === index)postPrices.push(item)
+  //     })
+  //   })
+  //   // console.log("postPricesArr:", postPrices)
+  //   postPrices.sort((a, b) => (a.price > b.price) ? 1 : -1)
+  //   console.log("sortedPostPrices:", postPrices)
+
+  //   for (let i = 0; i < postPrices.length-1; i++){
+  //     let index = postPrices.length-1
+  //     let index2 = postPrices.length-2
+  //     if (postPrices[i].price !== postPrices[i+1].price){finalPrices.push(postPrices[i])}
+      
+  //     if (postPrices[i+1].price === postPrices[index].price && postPrices[i+1].price > postPrices[index2].price){finalPrices.push(postPrices[i+1])}
+      
+  //   }
+  //   console.log("finalPricesToPost:", finalPrices)
+  //   this.setState({
+  //     ...this.state, 
+  //     postPricing: finalPrices,
+  //   }, () => console.log("getLowestpricesState:",this.state))
+  // }
+
 
   modal = (
     <Modal>
@@ -234,16 +278,19 @@ class PricingPage extends Component {
       const modal = this.state.Modal ? this.modal : null;
       const modal1 = this.state.Modal1 ? this.modal1 : null; 
       const modal2 = this.state.Modal2 ? this.modal2 : null;
-      const modal3 = this.state.Modal3 ? this.modal3 : null; 
+      const modal3 = this.state.Modal3 ? this.modal3 : null;
+      const sortedOption = this.props.productScanned.offers.sort((a, b) => (a.price > b.price) ? 1 : -1) 
       const returnPricingInfo = (<div id="priceFeed-Component">
       <h2 id="pricingPage-Header">LOWEST PRICE: </h2>
-      <h2 id="lowestPriceDiv">$0</h2>    
+      <h2 id="lowestPriceDiv">
+        {sortedOption[0].price}
+      </h2>    
       <h2 id='pricingPage-Header-2'>AVAILABLE AT: </h2>       
       {/* pricefeed div code below */}
         <div id="priceFeed-Container">
           <div id="storeInfoDiv-left"><span>1.</span></div>
-          <div id="storeInfoDiv-middle"><span id="storeName">TJ Maxx </span></div>
-          <div id="storeInfoDiv-middle2"><span id="storePrice">$0</span></div>
+          <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[0].merchant}</span></div>
+          <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[0].price}</span></div>
           <button onClick={this.showModal} id="storeInfoDiv-right">
             <img id="bidButtonImage" src={handShake}/> 
           </button>
@@ -254,14 +301,14 @@ class PricingPage extends Component {
         </div>
         <div id="priceFeed-Container">
           <div id="storeInfoDiv-left"><span>2.</span></div>
-          <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
-          <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+          <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[1].merchant} </span></div>
+          <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[1].price}</span></div>
           <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
         </div>
         <div id="priceFeed-Container">
         <div id="storeInfoDiv-left"><span>3.</span></div>
-        <div id="storeInfoDiv-middle"><span id="storeName">Walmart </span></div>
-        <div id="storeInfoDiv-middle2"><span id="storePrice">$00,000.00</span></div>
+        <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[2].merchant} </span></div>
+        <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[2].price}</span></div>
         <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
       </div>
       </div>)
@@ -277,13 +324,13 @@ class PricingPage extends Component {
               </div>
               
             </div>)
-        
+
         
         return(
           <div id="pricingPage-Container">
             <Nav logoutLocation='/userlogin'></Nav>
             <img id='pricingPageLogo'src={logo}/>
-           
+            
             {!this.state.voucherInfo ? returnPricingInfo : returnVoucherInfo}
             {!this.state.voucherDetails ? null : this.modal4}
             
@@ -303,5 +350,19 @@ class PricingPage extends Component {
 }
 
 
-export default PricingPage;
+// const mapDispatchToProps = {
+  
+// }
+
+const mapStateToProps = (state) => {
+  console.log(state.scanned.productScanned)
+  return {
+    productScanned: state.scanned.productScanned
+      
+  }
+}
+
+export default connect(mapStateToProps)(PricingPage);
+
+// export default PricingPage;
 // ReactDOM.render(<PricingPage />, appRoot);
