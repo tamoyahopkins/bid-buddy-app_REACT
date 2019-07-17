@@ -4,7 +4,7 @@ import logo from "../images/bid_buddy_logo_3.png";
 import { loginThenGoToUserProfile as login } from "../actions/auth"
 import { connect } from "react-redux";
 import { Link } from "react-router-dom"
-import clientRegisterForm from './clientRegisterForm'
+import ClientRegisterForm from './clientRegisterForm'
 
 const clientLoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>

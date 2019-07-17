@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import logo from "../images/bid_buddy_logo_3.png";
 
 
-class clientRegisterForm extends Component {
+class ClientRegisterForm extends Component {
     state = {
        username: "",
         password: ""
@@ -60,19 +60,13 @@ class clientRegisterForm extends Component {
             <Form onSubmit={handleRegister}>
               <Form.Group>
                 <Form.Input 
-                placeholder='User Name' 
+                placeholder='Store Name (no spaces)' 
                 name='username' 
                 type="text" 
                 onChange={this.handleChange} 
                 id="sellerName" required 
                 />
-                <Form.Input 
-                placeholder='Email' 
-                name='email' 
-                type="text" 
-                onChange={this.handleChange} 
-                id="sellerEmail" required 
-                />
+            
               </Form.Group>
 
               <Form.Input 
@@ -109,4 +103,4 @@ export default connect(
     err: auth.registerError
   }),
   { register }
-)(clientRegisterForm);
+)(ClientRegisterForm);
