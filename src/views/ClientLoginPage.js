@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom"
 import RegisterForm from './RegisterForm'
 
+
 const LoginForm = () => (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
