@@ -39,7 +39,7 @@ const login = loginData => dispatch => {
 
 
 export const loginThenGoToUserProfile = loginData => dispatch => {
-  return dispatch(login(loginData)).then(() => dispatch(push("/profile")));
+  return dispatch(login(loginData)).then(() => dispatch(push("/ClientLoginPage")));
 };
 
 
@@ -102,10 +102,19 @@ const register = registerData => dispatch => {
     });
 };
 
-export const registerUser = registerData => dispatch => {
+export const registerUser = registerData => (dispatch, getState) => {
   return dispatch(register(registerData))
   .then(() => dispatch(login({password:registerData.password,username:registerData.username})))
-  .then(() => dispatch(push("/clientAccoutPage")))
+  .then(() => {
+    const role = getState().auth.login.role; 
+    if(role === "user"){
+    dispatch(push("/scanitem"))
+    }else {
+    dispatch(push("/clientaccount"))
+    }
+  }
+    
+    )
 }
 
 
