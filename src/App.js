@@ -21,7 +21,7 @@ class App extends Component {
         <Route exact path="/clientlogin" render={() => <ClientLogin/>} />
         <Route exact path="/clientaccount" render={() => <ClientAccountPage/>} />
         <Route exact path="/pricingpage" render={() => <PricingPage/>} />
-        <Route exact path="/register" render={() => <RegisterForm/>} />
+        {/* <Route exact path="/register" render={() => <RegisterForm/>} /> */}
         {/* <Route exact path="/messagefeed" render={() => <MessageFeed />}/> */}
         {/* <Route exact path="/profile" render={() => <UserProfile />} /> */}
       </Switch>

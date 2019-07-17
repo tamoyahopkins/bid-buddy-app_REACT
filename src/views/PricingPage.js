@@ -12,6 +12,7 @@ const ReactDOM = require('react-dom');
 const modalRoot = document.getElementById('modal-root');
 // import { formatWithOptions } from 'util';
 
+
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -143,6 +144,21 @@ class PricingPage extends Component {
       voucherInfo: this.state.pricingInfo,
       voucherDetails: !this.state.voucherDetails,
   }, ()=> console.log("setState after Voucher details state change:", this.state))
+  }
+
+  fetchAcceptedBids(){
+    fetch("https://se5-bidbuddy.herokuapp.com/bids")
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return res.json().then(result => {
+        throw result;
+      });
+    })
+    .then(result => {
+      console.log("Fetched bids result:", result)
+    })
   }
   
   // getLowestPrice = () => {
@@ -311,7 +327,7 @@ class PricingPage extends Component {
         <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
       </div>
       </div>)
-      const returnVoucherInfo = (
+      const returnVoucherInfo = () => { return(
         // REMOVE BELOW CODE AND ADD VOUCHERFEED COMPONENT
             <div id="priceFeed-Component">
               <div className="voucherDiv-Container">
@@ -323,7 +339,7 @@ class PricingPage extends Component {
                 </div>
                 <button className="voucherDiv-button-right" onClick={this.changeVoucherDetailsState}>Get Voucher</button>
               </div>
-            </div>)
+            </div>)}
 
         
         return(
