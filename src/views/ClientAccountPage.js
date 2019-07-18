@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getBids, acceptBid } from "../actions/bidActions"
+import BidCard from "../components/clientBidCard"
 // import Modal from "../components/Modals"
 import {
   Modal,
@@ -36,9 +39,6 @@ let categories = [
 ];
 
 class addButton extends Component {
-componentDidMount() {
-  
-}
 
   render() {
     return (
@@ -163,6 +163,10 @@ componentDidMount() {
 }
 
 class ClientAccountPage extends Component {
+  
+  componentDidMount() {
+    this.props.getBids()
+}
   render() {
     return (
       <React.Fragment>
@@ -220,39 +224,15 @@ class ClientAccountPage extends Component {
             </div>
             <div id="rightCol">
               {/* BID CARD: will append to the page */}
-              <div id="bidCard-Container">
-                <img
-                  id="bidCard-section-left"
-                  class="bidCard-section"
-                  src="http://s7d4.scene7.com/is/image/BonTon/1366594?$ibm_large$"
-                />
-                <div id="bidCard-section-middle" class="bidCard-section">
-                  <label>
-                    <strong>Item ID:</strong> <text>190561642822</text>
-                  </label>
-                  <br />
-                  <label>
-                    <strong>Item Name: </strong>
-                    <text>MICHAEL Michael Kors "Kendrick" Slip On Shoes</text>
-                  </label>
-                  <br />
-                  <label>
-                    <strong>Description: </strong>
-                    <text>
-                      Here is my first item description...Here is my first item
-                      description...Here is my first item description...Here is
-                      my first item description...Here is my first item
-                      description...Here is my first item description...Here is
-                      my first item description...Here is my first item
-                      description...
-                    </text>
-                  </label>
-                </div>
-                <div id="bidCard-section-right" class="bidCard-section">
-                  <button class="bidResponseButton">Accept</button>
-                  <button class="bidResponseButton">Decline</button>
-                </div>
-              </div>
+              {this.props.bids.map(bid => {
+              return <BidCard 
+              upc={bid.upc} 
+              productImage={bid.productInfo.images[0]} 
+              bidId={bid._id} bidStatus={bid.bidStatus} 
+              productName={bid.productInfo.title} 
+              bidPrice={bid.bidPrice} 
+              price={bid.listedPrice} />
+            })}
             </div>
           </div>
         </div>
@@ -261,4 +241,13 @@ class ClientAccountPage extends Component {
   }
 }
 
-export default ClientAccountPage;
+const mapStateToProps = (state) => {
+  return {
+      bids: state.bids.bids
+  }
+}
+
+export default connect(mapStateToProps, {
+  getBids,
+  acceptBid
+})(ClientAccountPage);
