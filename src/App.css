@@ -532,7 +532,7 @@ top: -15px;
 #priceFeed-Component1{
   position: relative;
     min-height: 1em;
-    margin: 1em 0;
+    /* margin:  0; */
     background: #f8f8f9;
     padding: 1em 1.5em;
     line-height: 1.4285em;
@@ -555,6 +555,7 @@ top: -15px;
   width: 213.75px; 
   font-family: 'Franklin Gothic Medium';
   font-size: 12px; 
+  margin-left: 5px;
 }
 
 .voucherDiv-button-right{

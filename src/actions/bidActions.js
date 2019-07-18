@@ -32,7 +32,7 @@ export const acceptBid = (bid, acceptedObj) => (dispatch, getState) => {
             ...jsonHeaders,
             Authorization: "Bearer " + token
         },
-        body: acceptedObj
+        body: JSON.stringify(acceptedObj)
     }).then(handleJsonResponse).then(result => {
         return dispatch({ type: ACCEPT_BID_SUCCESS, payload: result })
     })

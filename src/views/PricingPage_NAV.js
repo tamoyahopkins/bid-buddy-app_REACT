@@ -28,8 +28,8 @@ const PricingPage_Nav = (props) => (
           </Dropdown>
         </Dropdown.Item> */}
         <Dropdown.Item onClick={() => props.pushToPage("/voucherpage")}>Vouchers</Dropdown.Item>
-        <Dropdown.Item href="/">Scanner</Dropdown.Item>
-        <Dropdown.Item href={props.logoutLocation}>Logout</Dropdown.Item>
+        <Dropdown.Item onClick={() => props.pushToPage("/scanitem")}>Scanner</Dropdown.Item>
+        <Dropdown.Item onClick={() => props.pushToPage("/")}>Logout</Dropdown.Item>
         {/* <Dropdown.Divider />
         <Dropdown.Header>Order</Dropdown.Header>
         <Dropdown.Item>Status</Dropdown.Item>

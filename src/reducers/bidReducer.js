@@ -25,8 +25,17 @@ export default (state = initialState, action) => {
             ...state
         }
     case ACCEPT_BID_SUCCESS:
+        const newbids = state.bids.slice()
+        const bidIndex = newbids.findIndex(bid => {
+            if(bid._id === action.payload.bid._id) {
+                return true
+            }
+        })
+        newbids.splice(bidIndex, 1, action.payload.bid)
+    
         return {
-            ...state
+            ...state,
+            bids: newbids
         }
         
     default:

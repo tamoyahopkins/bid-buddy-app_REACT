@@ -21,6 +21,8 @@ import {
   Form
 } from "semantic-ui-react";
 import logo from "../images/bid_buddy_logo_3.png";
+import { push } from "connected-react-router";
+import { pushToPage } from "../actions/scanner";
 
 let categories = [
   { key: "Accessories", text: "Accessories", value: "Accessories" },
@@ -167,6 +169,101 @@ class ClientAccountPage extends Component {
   componentDidMount() {
     this.props.getBids()
 }
+productDashboardSummary = () => { 
+  const totalDeclined = this.props.bids.filter(bid => bid.bidStatus === "declined").reduce((totalDeclined, bid) => {
+    return totalDeclined + bid.listedPrice
+  }, 0)
+  const totalAccepted = this.props.bids.filter(bid => bid.bidStatus === "accepted").reduce((totalAccepted, bid) => {
+    return totalAccepted + bid.listedPrice
+  }, 0)
+  const totalAcceptedBidPrice = this.props.bids.filter(bid => bid.bidStatus === "accepted").reduce((totalAccepted, bid) => {
+    return totalAccepted + bid.bidPrice
+  }, 0)
+  const totalDeclinedBidPrice = this.props.bids.filter(bid => bid.bidStatus === "declined").reduce((totalDeclined, bid) => {
+    return totalDeclined + bid.bidPrice
+  }, 0)
+  const varianceTotalDeclined = totalDeclined - totalDeclinedBidPrice
+  const varianceTotalAccepted = totalAcceptedBidPrice - totalAccepted
+
+  return (  
+  <Segment>
+      <Header as='h3'>Summary</Header>
+      <Grid columns={2}>
+          <Grid.Column>
+              <Grid.Row>Total #of bids</Grid.Row>
+              <Grid.Row>Total #of pending bids</Grid.Row>
+          </Grid.Column>
+          <Grid.Column>
+              <Grid.Row>{this.props.bids.length}</Grid.Row>
+              <Grid.Row>{this.props.bids.filter(bid => bid.bidStatus === "pending").length}</Grid.Row>
+          </Grid.Column>
+      </Grid>
+      <Divider></Divider>
+      <Grid columns={3}>
+          <Grid.Column>
+              <Grid.Row> Total Declined </Grid.Row>
+              <Grid.Row>{totalDeclined}</Grid.Row>
+              <Grid.Row>Total Accepted </Grid.Row>
+              <Grid.Row>{totalAccepted}</Grid.Row>
+          </Grid.Column>
+          <Grid.Column>
+              <Grid.Row>Bid value &#40;$&#41; </Grid.Row>
+              <Grid.Row>{totalDeclinedBidPrice}</Grid.Row>
+              <Grid.Row>Bid value &#40;$&#41; </Grid.Row>
+              <Grid.Row>{totalAcceptedBidPrice}</Grid.Row>
+          </Grid.Column>
+          <Grid.Column>
+              <Grid.Row>Variance &#40;+&#47;-&#41; </Grid.Row>
+              <Grid.Row>{varianceTotalDeclined}</Grid.Row>
+              <Grid.Row>Variance &#40;+&#47;-&#41; </Grid.Row>
+              <Grid.Row>{varianceTotalAccepted}</Grid.Row>
+
+          </Grid.Column>
+  </Grid>
+</Segment>
+)
+}
+addButton = () => 
+(<Modal trigger={<Segment textAlign='center'><Button color='dark blue' primary>ADD BID THRESHOLDS</Button></Segment>} closeIcon>
+<Grid rows={2}>
+  <Grid.Row><Header as='h2' icon='hand point up' content='Accept bids automatically by setting custom thresholds below.' /></Grid.Row>
+  <Grid.Row><Header as='h4'>Set threshold by category</Header></Grid.Row>
+  <Grid.Row columns={2}>
+      <Grid.Column><Dropdown placeholder='Categories' fluid multiple selection options={categories} /></Grid.Column>
+      <Grid.Column><Input labelPosition="right" type="text" placeholder='Threshold (%)'>
+      <input/><Label basic>%</Label></Input></Grid.Column>
+  </Grid.Row>
+  <Divider/>
+  <Grid.Row><Header as='h4'>Set threshold by brand name</Header></Grid.Row>
+  <Grid.Row columns={2}>
+      <Grid.Column><Input placeholder='Enter Brand Name'/></Grid.Column>
+      <Grid.Column><Input labelPosition="right" type="text" placeholder='Threshold (%)'>
+      <input/><Label basic>%</Label></Input></Grid.Column>
+  </Grid.Row>
+  <Divider/>
+ <Grid.Row> <Header as='h4'>Set threshold by volumne in stock</Header> </Grid.Row>
+  <Grid.Row columns={2}>
+      <Grid.Column><Input placeholder='Enter Volume Amount'/></Grid.Column>
+      <Grid.Column><Input labelPosition="right" type="text" placeholder='Threshold (%)'>
+      <input/><Label basic>%</Label></Input></Grid.Column>
+  </Grid.Row>
+  <Divider/>
+  <Grid.Row><Header as='h4'>Set threshold by age of product in stock</Header></Grid.Row>
+  <Grid.Row columns={2}>
+      <Grid.Column><Input placeholder='Age limit'/></Grid.Column>
+      <Grid.Column><Input labelPosition="right" type="text" placeholder='Threshold (%)'>
+      <input/><Label basic>%</Label></Input></Grid.Column>
+  </Grid.Row>
+  <Grid.Row><Header as='h4'>Set threshold by item number (UPC)</Header></Grid.Row>
+  <Grid.Row columns={2}>
+      <Grid.Column><Input placeholder='Item Number'/></Grid.Column>
+      <Grid.Column><Input labelPosition="right" type="text" placeholder='Threshold (%)'>
+      <input/><Label basic>%</Label></Input></Grid.Column>
+  </Grid.Row>
+  <Grid.Row><Button color='orange' primary>Set Thresholds</Button></Grid.Row>
+</Grid>
+</Modal>
+)
   render() {
     return (
       <React.Fragment>
@@ -189,38 +286,15 @@ class ClientAccountPage extends Component {
             </div>
             <div id="clientPageNav-buttons">
               <button>Profile</button>
-              <button>Logout</button>
+              <button onClick={() => pushToPage("/clientLogin")}>Logout</button>
             </div>
           </div>
           {/* feed container div */}
           <div id="feedContainer">
             <div id="leftCol">
-              <div className="productDash">
-                Product Dash
-                <br />
-                <br />
-                <addButton/>
-              </div>
-              <div className="header-text">
-                Catagory
-                {/* <button class="dash-button">+</button> */}
-              </div>
-              <div className="header-text">
-                Brand
-                {/* <button class="dash-button">+</button> */}
-              </div>
-              <div className="header-text">
-                Volume
-                {/* <button class="dash-button">+</button> */}
-              </div>
-              <div className="header-text">
-                Age
-                {/* <button class="dash-button">+</button> */}
-              </div>
-              <div className="header-text">
-                Item Number (UPC)
-                {/* <button class="dash-button">+</button> */}
-              </div>
+            <Header as='h1'>Product Dashboard</Header>
+                {this.productDashboardSummary()}
+                {this.addButton()}  
             </div>
             <div id="rightCol">
               {/* BID CARD: will append to the page */}
@@ -249,5 +323,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getBids,
-  acceptBid
+  acceptBid,
+  pushToPage
 })(ClientAccountPage);
