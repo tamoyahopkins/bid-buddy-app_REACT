@@ -68,8 +68,6 @@ class Home extends Component {
           <div id="scannerDiv">
             <Scanner onBarcodeDetect={this.onBarcodeDetect} />
           </div>
-          <Product
-          item={this.props.productScanned} />
         </div>
       ) 
     }

@@ -8,6 +8,8 @@ import shrug from "../images/shrugEmoji.jpg"
 import Nav from "./PricingPage_NAV"
 import { link } from 'fs';
 import { connect } from 'react-redux'
+import { createBid } from "../actions/bidActions"
+
 const ReactDOM = require('react-dom'); 
 const modalRoot = document.getElementById('modal-root');
 // import { formatWithOptions } from 'util';
@@ -43,14 +45,34 @@ class PricingPage extends Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  handleSubmit = e => {
+    const bidObj = {
+  "upc": this.props.productScanned.upc,
+  "listedPrice": this.state.selectedOffer.price,
+  "bidPrice": Number(this.state.bidPrice),
+  "productInfo": this.props.productScanned,
+  "voucher": 0,
+  "storeUsername": this.state.selectedOffer.merchant.replace(" ", ""),
+  "username": this.props.username
+    }
+    this.props.createBid(bidObj)
 
-  showModal = (selectedListedPrice)=> {
+    this.setState({
+      Modal: !this.state.Modal,
+      Modal1: this.state.Modal1, 
+      Modal2: !this.state.Modal2, 
+      Modal3: this.state.Modal3
+     })
+
+  }
+
+  showModal = (selectedOffer)=> {
     this.setState({
       Modal: true,
       Modal1: this.state.Modal1, 
       Modal2: this.state.Modal2, 
       Modal3: this.state.Modal3, 
-      selectedListedPrice  
+      selectedOffer: selectedOffer 
      });
   }
   //click confirm Bid button
@@ -204,16 +226,18 @@ class PricingPage extends Component {
   // }
 
 
-  modal = (selectedListedPrice) => (
+  modal = (selectedOffer) => (
     <Modal>
     <div className="modal">
       {/* <img className="modal_clientLogo" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg" ></img> */}
       <div className="modal_userForm">
-        <form onSubmit={this.showCorrectModal} id="modal_Form">
+        <form onSubmit={this.handleSubmit} id="modal_Form">
           <label>Listed Price: </label>
-          <input value={"$" + selectedListedPrice}></input>
+          <input value={"$" + selectedOffer.price}></input>
           <label>Enter Bid Amount:</label>
-          <input onChange={this.handleChange}></input>
+          <input 
+          name="bidPrice"
+          onChange={this.handleChange}></input>
           
           <br></br>
           {/* <label><strong>Payment Details</strong></label>
@@ -227,7 +251,8 @@ class PricingPage extends Component {
           <label>CBD:</label>
           <input></input> */}
           <hr></hr>
-          <button type="submit">Confirm Bid!</button>
+          <button 
+          type="submit">Confirm Bid!</button>
         </form>
       </div>
     </div>
@@ -294,7 +319,7 @@ class PricingPage extends Component {
   
 
     render(){
-      const modal = this.state.Modal ? this.modal(this.state.selectedListedPrice) : null;
+      const modal = this.state.Modal ? this.modal(this.state.selectedOffer) : null;
       const modal1 = this.state.Modal1 ? this.modal1 : null; 
       const modal2 = this.state.Modal2 ? this.modal2 : null;
       const modal3 = this.state.Modal3 ? this.modal3 : null;
@@ -310,7 +335,7 @@ class PricingPage extends Component {
           <div id="storeInfoDiv-left"><span>1.</span></div>
           <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[0].merchant}</span></div>
           <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[0].price}</span></div>
-          <button onClick={() => this.showModal(sortedOption[0].price)} id="storeInfoDiv-right">
+          <button onClick={() => this.showModal(sortedOption[0])} id="storeInfoDiv-right">
             <img id="bidButtonImage" src={handShake}/> 
           </button>
             {modal}
@@ -322,13 +347,13 @@ class PricingPage extends Component {
           <div id="storeInfoDiv-left"><span>2.</span></div>
           <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[1].merchant} </span></div>
           <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[1].price}</span></div>
-          <button onClick={() => this.showModal(sortedOption[1].price)} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+          <button onClick={() => this.showModal(sortedOption[1])} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
         </div>
         <div id="priceFeed-Container">
         <div id="storeInfoDiv-left"><span>3.</span></div>
         <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[2].merchant} </span></div>
         <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[2].price}</span></div>
-        <button onClick={() => this.showModal(sortedOption[2].price)} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+        <button onClick={() => this.showModal(sortedOption[2])} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
       </div>
       </div>)
       const returnVoucherInfo = () => { return(
@@ -377,12 +402,14 @@ class PricingPage extends Component {
 const mapStateToProps = (state) => {
   console.log(state.scanned.productScanned)
   return {
-    productScanned: state.scanned.productScanned
-      
+    productScanned: state.scanned.productScanned,
+    username: state.auth.login.username
   }
 }
 
-export default connect(mapStateToProps)(PricingPage);
+
+
+export default connect(mapStateToProps, {createBid})(PricingPage);
 
 // export default PricingPage;
 // ReactDOM.render(<PricingPage />, appRoot);

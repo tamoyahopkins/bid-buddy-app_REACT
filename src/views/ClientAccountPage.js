@@ -36,6 +36,10 @@ let categories = [
 ];
 
 class addButton extends Component {
+componentDidMount() {
+  
+}
+
   render() {
     return (
       <Modal trigger={<Button color="dark blue">+</Button>} closeIcon>

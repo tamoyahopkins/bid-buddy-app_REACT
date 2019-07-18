@@ -49,8 +49,9 @@ export const createBid = (bidObj) => (dispatch, getState) => {
                 ...jsonHeaders,
                 Authorization: "Bearer " + token
             },
-            body: bidObj
+            body: JSON.stringify(bidObj)
         }).then(handleJsonResponse).then(result => {
         return dispatch({ type: CREATE_BID_SUCCESS, payload: result }) 
     }) 
 }
+
