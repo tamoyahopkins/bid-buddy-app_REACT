@@ -125,7 +125,7 @@ export const getUpc = (code) => {
     fetch(req)
     .catch(err => console.log('error', err))
     .then(res => {
-      console.log(res.status)
+      console.log(res)
       if(res.status !== 200){
         return {
           resStatus: res.status
@@ -164,4 +164,8 @@ export const invalidBarcode = (err) => {
   return {
     type: errText,
   }
+}
+
+export const pushToPage = ( location) => (dispatch) => {
+  dispatch(push(location))
 }

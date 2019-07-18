@@ -38,8 +38,15 @@ const login = loginData => dispatch => {
 };
 
 
-export const loginThenGoToUserProfile = loginData => dispatch => {
-  return dispatch(login(loginData)).then(() => dispatch(push("/ClientLoginPage")));
+export const loginThenGoToUserProfile = loginData => (dispatch, getState) => {
+  return dispatch(login(loginData)).then(() => {
+    const role = getState().auth.login.role;
+    if (role === "user"){
+      dispatch(push("/scanitem"))
+    }else {
+    dispatch(push("/clientaccount"))
+    }
+  })
 };
 
 

@@ -12,6 +12,7 @@ const ReactDOM = require('react-dom');
 const modalRoot = document.getElementById('modal-root');
 // import { formatWithOptions } from 'util';
 
+
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -39,14 +40,17 @@ class PricingPage extends Component {
   // componentDidMount() {
   //   this.props.productScanned({});
   // }
-  
-  showModal = ()=> {
-    // let showModal = !this.state.Modal
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  showModal = (selectedListedPrice)=> {
     this.setState({
       Modal: true,
       Modal1: this.state.Modal1, 
       Modal2: this.state.Modal2, 
-      Modal3: this.state.Modal3  
+      Modal3: this.state.Modal3, 
+      selectedListedPrice  
      });
   }
   //click confirm Bid button
@@ -145,6 +149,21 @@ class PricingPage extends Component {
       voucherDetails: !this.state.voucherDetails,
   }, ()=> console.log("setState after Voucher details state change:", this.state))
   }
+
+  fetchAcceptedBids(){
+    fetch("https://se5-bidbuddy.herokuapp.com/bids")
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return res.json().then(result => {
+        throw result;
+      });
+    })
+    .then(result => {
+      console.log("Fetched bids result:", result)
+    })
+  }
   
   // getLowestPrice = () => {
   //   let priceArr = []
@@ -185,19 +204,19 @@ class PricingPage extends Component {
   // }
 
 
-  modal = (
+  modal = (selectedListedPrice) => (
     <Modal>
     <div className="modal">
-      <img className="modal_clientLogo" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg" ></img>
+      {/* <img className="modal_clientLogo" src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg" ></img> */}
       <div className="modal_userForm">
         <form onSubmit={this.showCorrectModal} id="modal_Form">
           <label>Listed Price: </label>
-          <input></input>
+          <input value={"$" + selectedListedPrice}></input>
           <label>Enter Bid Amount:</label>
-          <input></input>
+          <input onChange={this.handleChange}></input>
           
           <br></br>
-          <label><strong>Payment Details</strong></label>
+          {/* <label><strong>Payment Details</strong></label>
           <br></br>
           <label>Payee Name:</label>
           <input></input>
@@ -206,7 +225,7 @@ class PricingPage extends Component {
           <label>Expiration Date:</label>
           <input></input>
           <label>CBD:</label>
-          <input></input>
+          <input></input> */}
           <hr></hr>
           <button type="submit">Confirm Bid!</button>
         </form>
@@ -275,7 +294,7 @@ class PricingPage extends Component {
   
 
     render(){
-      const modal = this.state.Modal ? this.modal : null;
+      const modal = this.state.Modal ? this.modal(this.state.selectedListedPrice) : null;
       const modal1 = this.state.Modal1 ? this.modal1 : null; 
       const modal2 = this.state.Modal2 ? this.modal2 : null;
       const modal3 = this.state.Modal3 ? this.modal3 : null;
@@ -291,7 +310,7 @@ class PricingPage extends Component {
           <div id="storeInfoDiv-left"><span>1.</span></div>
           <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[0].merchant}</span></div>
           <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[0].price}</span></div>
-          <button onClick={this.showModal} id="storeInfoDiv-right">
+          <button onClick={() => this.showModal(sortedOption[0].price)} id="storeInfoDiv-right">
             <img id="bidButtonImage" src={handShake}/> 
           </button>
             {modal}
@@ -303,16 +322,18 @@ class PricingPage extends Component {
           <div id="storeInfoDiv-left"><span>2.</span></div>
           <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[1].merchant} </span></div>
           <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[1].price}</span></div>
-          <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+          <button onClick={() => this.showModal(sortedOption[1].price)} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
         </div>
         <div id="priceFeed-Container">
         <div id="storeInfoDiv-left"><span>3.</span></div>
         <div id="storeInfoDiv-middle"><span id="storeName">{sortedOption[2].merchant} </span></div>
         <div id="storeInfoDiv-middle2"><span id="storePrice">${sortedOption[2].price}</span></div>
-        <button onClick={this.showModal} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
+        <button onClick={() => this.showModal(sortedOption[2].price)} id="storeInfoDiv-right"><img id="bidButtonImage" src={handShake}/></button>
       </div>
       </div>)
-      const returnVoucherInfo = (<div id="priceFeed-Component">
+      const returnVoucherInfo = () => { return(
+        // REMOVE BELOW CODE AND ADD VOUCHERFEED COMPONENT
+            <div id="priceFeed-Component">
               <div className="voucherDiv-Container">
                 <img className="voucherDiv-image-left" src={logo}/>
                 <div className="voucherDiv-info-middle">
@@ -322,8 +343,7 @@ class PricingPage extends Component {
                 </div>
                 <button className="voucherDiv-button-right" onClick={this.changeVoucherDetailsState}>Get Voucher</button>
               </div>
-              
-            </div>)
+            </div>)}
 
         
         return(
@@ -337,7 +357,7 @@ class PricingPage extends Component {
             {/* BidButton code below */}
             <div id="pricingPageButtons-Container">
                 <button onClick={this.changeReturnState}id="goToVouchersButton"><strong>Go To Vouchers</strong></button> 
-              <button id="scanNewItemButton" onClick={()=> window.location.href='/'}><strong>Scan another item</strong></button> 
+              <button id="scanNewItemButton" onClick={()=> window.location.href='/scanitem'}><strong>Scan another item</strong></button> 
             </div>  
         </div>
 

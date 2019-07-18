@@ -1,11 +1,13 @@
 import React from 'react'
 import { Dropdown, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-
+import { pushToPage } from "../actions/scanner"
+import { connect }from "react-redux"
 //note PricingPage_Nav takes props = userLogin location which 
 //must be a string (e.g. "/home" r)
 const PricingPage_Nav = (props) => (
   
+
     <Dropdown icon='settings' pointing className='link item'>
       <Dropdown.Menu>
         {/* <Dropdown.Header>Categories</Dropdown.Header> */}
@@ -25,6 +27,7 @@ const PricingPage_Nav = (props) => (
             </Dropdown.Menu>
           </Dropdown>
         </Dropdown.Item> */}
+        <Dropdown.Item onClick={() => props.pushToPage("/voucherpage")}>Vouchers</Dropdown.Item>
         <Dropdown.Item href="/">Scanner</Dropdown.Item>
         <Dropdown.Item href={props.logoutLocation}>Logout</Dropdown.Item>
         {/* <Dropdown.Divider />
@@ -36,4 +39,4 @@ const PricingPage_Nav = (props) => (
   
 )
 
-export default PricingPage_Nav;
+export default connect(null, {pushToPage})(PricingPage_Nav);

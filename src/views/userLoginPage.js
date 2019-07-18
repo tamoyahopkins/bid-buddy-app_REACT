@@ -5,6 +5,7 @@ import RegisterForm from "./RegisterForm"
 import { loginThenGoToUserProfile as login } from '../actions/auth';
 import { connect } from "react-redux";
 // import { registerUser as register } from "../actions/auth"
+import Landing from './Landing'
 
 class userLoginForm extends Component { 
   state = { username: "", password: "" };
@@ -34,7 +35,8 @@ class userLoginForm extends Component {
           <Form.Input 
           fluid icon='user' 
           iconPosition='left' 
-          placeholder='E-mail address'
+          placeholder='username'
+          name="username"
           onChange={handleChange} 
           />
         
@@ -43,6 +45,7 @@ class userLoginForm extends Component {
             icon='lock'
             iconPosition='left'
             placeholder='Password'
+            name="password"
             type='password'
             onChange={handleChange}
           />
@@ -58,6 +61,11 @@ class userLoginForm extends Component {
       </Form>
       <Message>
         New to us? {<RegisterForm />}
+      </Message>
+      <Message>
+        Want to Know More? {<Landing/>}
+        
+
       </Message>
     </Grid.Column>
   </Grid>

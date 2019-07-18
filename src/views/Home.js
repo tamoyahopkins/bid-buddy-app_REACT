@@ -7,6 +7,7 @@ import 'semantic-ui-css/semantic.min.css'
 import Product from "../components/Product"
 import { processBarcode } from "../actions/scanner"
  import { Button } from 'semantic-ui-react'
+ import Nav from './PricingPage_NAV'
 
 
 
@@ -50,6 +51,7 @@ class Home extends Component {
 
         return (
         <div id="scanPage-Container">
+          <Nav></Nav>
           <img alt="logo" id='scanPageLogo' src={logo}/>        
           <div>
             <input 
