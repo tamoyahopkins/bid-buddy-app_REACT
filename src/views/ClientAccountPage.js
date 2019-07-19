@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getBids, acceptBid } from "../actions/bidActions"
 import BidCard from "../components/clientBidCard"
+import clientLogo from "../images/bloomingdales.png"
 // import Modal from "../components/Modals"
 import {
   Modal,
@@ -191,7 +192,7 @@ productDashboardSummary = () => {
       <Grid columns={2}>
           <Grid.Column>
               <Grid.Row>Total #of bids</Grid.Row>
-              <Grid.Row>Total #of pending bids</Grid.Row>
+              <Grid.Row>Total #of pending</Grid.Row>
           </Grid.Column>
           <Grid.Column>
               <Grid.Row>{this.props.bids.length}</Grid.Row>
@@ -272,7 +273,7 @@ addButton = () =>
           <div id="logo-div">
             <img
               class="accountLogos"
-              src="https://s3-media4.fl.yelpcdn.com/bphoto/KImy2lcnme23Q8jeUQ7s_A/ls.jpg"
+              src={clientLogo}
             />
             <h1 id="clientAccountPage-headerText"> Account Page </h1>
             <img id="accountLogos-Right" class="accountLogos" src={logo} />
@@ -280,9 +281,9 @@ addButton = () =>
           {/* navbar div */}
           <div id="clientPageNav">
             <div>
-              <span>
+              {/* <span>
                 You have <strong>0</strong> bids unanswered.
-              </span>
+              </span> */}
             </div>
             <div id="clientPageNav-buttons">
               <button>Profile</button>

@@ -27,7 +27,7 @@ input{
 .accountLogos{
   margin: 10px; 
   height: 75px; 
-  width: 75px; 
+  width: 150px; 
 }
 #accountLogos-Right{
   height: 110px; 
@@ -565,6 +565,10 @@ top: -15px;
   background-color: darkblue;
   color: white; 
 }
+.className{
+  display: flex;
+}
+
 
 
 

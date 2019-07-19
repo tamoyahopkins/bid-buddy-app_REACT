@@ -53,17 +53,19 @@ class Home extends Component {
         <div id="scanPage-Container">
           <Nav></Nav>
           <img alt="logo" id='scanPageLogo' src={logo}/>        
-          <div>
+          <div 
+          className="scannerButton">
+
             <input 
             id='scanPageInput'
             type="text" 
             placeholder="Insert product name or UPC number"
             onChange={this.handleChange}
             />     
-          </div>
-          <Button
+          <button
           onClick = {this.handleSubmit}
-          ></Button>
+          >Enter</button>
+          </div>
           
           <div id="scannerDiv">
             <Scanner onBarcodeDetect={this.onBarcodeDetect} />
