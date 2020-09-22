@@ -1,3 +1,7 @@
+## BidBuddy Application
+
+Price comparison tool that allows you to compare prices of different barcodes and see which merchant offers it for the cheapest price.  
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
